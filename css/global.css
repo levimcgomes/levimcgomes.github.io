@@ -1,7 +1,63 @@
-﻿h1{
-    text-align:center;
+﻿h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+h2 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.main {
+    width: 60%;
+    /*      Top   Left  Bottom Right*/
+    margin: auto  auto  auto   auto;
 }
 
 body, body * {
     font-family: 'Times New Roman';
+}
+
+div.nav-links{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+div.nav-links *{
+    padding: 3px 10px;
+    font-size: 20px;
+}
+
+a.nav-links:link {
+    color: black;
+    text-decoration: underline;
+}
+
+a.nav-links:visited {
+    color: black;
+    text-decoration: underline;
+}
+
+a.nav-links:hover {
+    color: #000e80;
+    text-decoration: underline;
+}
+
+a.nav-links:active {
+    color: #0044c2;
+    text-decoration: underline;
+}
+
+.yt-logo{
+    height: 20px;
+    align-content: center;
+}
+
+div.signoff {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px auto;
 }
