@@ -1,0 +1,16 @@
+﻿body {
+    background-color: white;
+    color: black;
+}
+
+a.nav-links {
+    color: black;
+}
+
+    a.nav-links:hover {
+        color: #000e80;
+    }
+
+    a.nav-links:active {
+        color: #0044c2;
+    }

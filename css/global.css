@@ -1,23 +1,24 @@
-﻿h1 {
+﻿/*Headers*/
+h1 {
     text-align: center;
     font-weight: normal;
 }
-
 h2 {
     text-align: center;
     font-weight: normal;
 }
-
+/*Change things over entire document*/
+body {
+    font-family: Verdana;
+    animation-duration: 2s;
+}
+/*Main text container*/
 .main {
-    width: 60%;
+    width: 50%;
     /*      Top   Left  Bottom Right*/
     margin: auto  auto  auto   auto;
 }
-
-body, body * {
-    font-family: 'Times New Roman';
-}
-
+/*Navigation Links at the top of the page*/
 div.nav-links{
     display: flex;
     justify-content: flex-end;
@@ -25,39 +26,43 @@ div.nav-links{
     margin-top: 20px;
     margin-right: 20px;
 }
-
 div.nav-links *{
     padding: 3px 10px;
     font-size: 20px;
 }
-
-a.nav-links:link {
-    color: black;
+a.nav-links {
     text-decoration: underline;
 }
-
-a.nav-links:visited {
-    color: black;
-    text-decoration: underline;
-}
-
-a.nav-links:hover {
-    color: #000e80;
-    text-decoration: underline;
-}
-
-a.nav-links:active {
-    color: #0044c2;
-    text-decoration: underline;
-}
-
 .yt-logo{
     height: 20px;
     align-content: center;
 }
-
+/*Toggle mode Image/Button*/
+.toggle-mode {
+    height: 50px;
+    align-content: center;
+}
+/*Sign off at the end of a post*/
 div.signoff {
     display: flex;
     justify-content: flex-end;
     margin: 10px auto;
+}
+/*Code snippets*/
+code, code * {
+    font-family: 'Courier New';
+}
+/*Line numbers in code snippets*/
+.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    user-select: none;
+    text-align: right;
+    color: #2b91af;
+    border-right: 1px solid #CCC;
+    vertical-align: top;
+    padding-right: 5px !important;
+    /* your custom style here */
+}
+.hljs-ln-code {
+    padding-left: 10px;
 }

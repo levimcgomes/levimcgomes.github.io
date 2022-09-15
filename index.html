@@ -7,23 +7,49 @@
     <title>Leviathan's Blog</title>
     <link href="css/global.css" rel="stylesheet" />
     <link href="css/ debug.css" rel="stylesheet" />
+    <!--Script fo Highlight JS-->
+    <!--base16/atelier-savanna, base16/material-darker, base16/ros-pine-moon, github-dark-dimmed, stackoverflow-dark-->
+    <!--<link rel="stylesheet" href="./lib/highlight/styles/github.min.css">-->
+    <script src="js/LightDarkMode.js"></script>
+    <link rel="stylesheet" href="css/code.css">
+    <script src="./lib/highlight/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+    <script>hljs.highlightAll(); hljs.initLineNumbersOnLoad();</script>
 </head>
-<body>
+<body onload="lightMode()">
     <div class="nav-links">
+        <img class="toggle-mode" src="img/darkMode.svg" id="toggleMode" onclick="toggleMode()"/>
         <a class="nav-links" href="./index.html">Home</a>
         <a class="nav-links" href="./index.html#About">About</a>
-        <!--<a class="nav-links" href="./index.html#Youtube"><img class="yt-logo" src="img/yt_logo_rgb_light.png" alt="YouTube" /></a>-->
+        <a class="nav-links" href="./index.html#Youtube"><img class="yt-logo" src="img/yt_logo_rgb_light.png" alt="YouTube" /></a>
     </div>
     <div class="main">
         <h1>Welcome to Leviathan's Blog</h1>
         <h2>Recent Posts</h2>
+        <div id="recentPostsContainer"></div>
         <h2>What is this??</h2>
         <div>
-            Well, that&#39;s a stupid question, ins&#39;t it? This is a blog, what else would it be?
+            Well, that&#39;s a stupid question, isn&#39;t it? This is a blog, what else would it be?
             Jokes aside, this is a blog mostly about gamedev - although I can&#39;t promise I won&#39;t write about anything else. I&#39;ll be making all sorts of posts, but one of the main focuses of this blog will be "Islands", the game I&#39;m currently working on. On those posts, I&#39;ll talk about what I&#39;ve been doing to the game, and I&#39;ll share some things I have learned doing it. By the way, the game isn&#39;t open source, but my aim is to write these posts as a deep dive into the mechanics of the game. For those of you who aren&#39;t interested in such technical information, you can just as well watch the short devlogs I&#39;ll be posting on YouTube alongside the posts in this blog. Also, I can&#39;t guarantee consistent posts, there might very well be periods of one to two months in which I don&#39;t post anything - or upload to YouTube - as I&#39;m still a student and of course school comes first. So I&#39;ll try to work on the game and make posts whenever I can, but no promises. Anyway, I hope you&#39;ll enjoy my posts and following along with the development of "Islands". Cheers!
             <div class="signoff">- Leviathan, 14/09/2022</div>
         </div>
         <h2 id="About">About Me</h2>
+        <pre><code class="language-csharp">
+    using System.IO.Compression;
+
+    #pragma warning disable 414, 3021
+
+    namespace MyApplication {
+        [Obsolete("...")]
+        class Program : IInterface {
+            public static List<int> JustDoIt(int count){
+                Span<int> numbers = stackalloc int[length];
+                Console.WriteLine($"Hello {Name}!");
+                return new List<int> (new int[] { 1, 2, 3 })
+            }
+        }
+    }
+</code></pre>
     </div>
 </body>
 </html>
