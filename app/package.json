@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint",
-    "launch": "python launch.py",
-    "deploy": "npm run build && npm run launch"
+    "lint": "next lint"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
