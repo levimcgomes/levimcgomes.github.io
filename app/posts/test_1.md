@@ -1,6 +1,7 @@
 ---
 title: 'Test post'
 date: '05/10/2022'
+tags: ['test', 'testing']
 excerpt: 'This is a very interesting post'
 cover_image: '/images/posts/img1.jpg'
 ---

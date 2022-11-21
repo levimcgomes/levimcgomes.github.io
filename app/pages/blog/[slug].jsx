@@ -20,21 +20,28 @@ import 'highlight.js/styles/github.css'
 import 'katex/dist/katex.css'
 import 'markdown-it-texmath/css/texmath.css'
 import Link from 'next/link'
+import Head from 'next/head'
 
 export default function PostPage({
-    frontmatter: { title, date, cover_image },
+    frontmatter: { title, date, cover_image, tags },
     slug,
     content,
 }) {
     return (
         <>
+            <Head>
+                <title>{title} | How I Made A Game</title>
+            </Head>
             <Link href='/'>
-                <a className='btn btn-back'>Go Back</a>
+                <div align='right' ><a className='btn-back'><span>Go Back</span></a></div>
             </Link>
-            <div className='card card-page'>
+            <div className='post-page'>
                 <h1 className='post-title'>{title}</h1>
                 <div className='post-date'>Posted on {date}</div>
-                <img src={cover_image} alt='' />
+                <div className='post-tags'>{tags.map(
+                    (tag, index) => (<div key={index} className='post-tag'>{tag}</div>)
+                )}</div>
+                <img className='post-image' src={cover_image} alt='' />
                 <div className='post-body'>
                     <div dangerouslySetInnerHTML={{
                         __html: md.render(content)

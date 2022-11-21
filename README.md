@@ -1,2 +1,1 @@
-# leviathanCS.github.io
-Repository for the Github Pages website https://leviathancs.github.io
+Repository for the code for the Github Pages website https://levi-gomes.github.io
