@@ -50,8 +50,16 @@ h1 {
     font-size: 36px;
 }
 
-.page h1, h2, h3, h4, h5, h6 {
+.page h1{
     text-align: center;
+}
+
+.page h2, h3, h4, h5, h6 {
+    text-align: left;
+}
+
+.page p {
+    text-indent: 2%;
 }
 
 .recent-posts {
@@ -207,6 +215,17 @@ h1 {
     font-size: 45px;
 }
 
+.post-body a {
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    color: #05A3A1;
+    transition-duration: .5s;
+}
+
+    .post-body a:hover {
+        text-decoration-color: #05A3A1;
+    }
+
 blockquote {
     font-size: 20px;
     background: #CCEFEF;
@@ -214,6 +233,6 @@ blockquote {
     padding-left: 5px;
 }
 
-    blockquote span {
-        font-weight: bold;
+    blockquote p {
+        text-indent: 0px;
     }

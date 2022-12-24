@@ -1,4 +1,5 @@
 import fs from 'fs'
+import glob from 'glob'
 import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
@@ -22,7 +23,7 @@ export default function Home({ posts }) {
             <Link href='/archive' passHref><div align='center' ><a className='btn'>&nbsp;See All&nbsp;</a></div></Link>
             <h2 id='about'>About</h2>
             <p className='text'>
-Lorem ipsum dolor sit amet diam dignissim eos accusam et est dolore justo elitr nibh nibh et tempor dolor accusam dolore tation nonumy gubergren rebum gubergren diam adipiscing ea nonummy ipsum commodo ipsum aliquyam in dolore diam facer sed et diam quod velit esse consequat sit invidunt et ex elit rebum sed ut diam labore magna no qui ea sed invidunt diam hendrerit no et molestie nisl eirmod clita justo est lorem rebum dolore lorem vero accusam duo nonummy lorem eos justo sed duo dolore hendrerit amet tempor nulla consetetur eos accusam sed ex labore dolor est sed justo
+                So, what&#39;s this all <em>about</em>? It's about how I made a game. Sometimes. Really, it's about whatever I feel like writing. Most of the time, it will be about making games, but everything is fair game for me. I'll try to post every other week, but due to other responsiblities (aka. school), I might be unable to fullfil a schedule. If you'd like to contact me for some reason (preferably related to this blog), you can find me on <Link href='https://discordapp.com/users/924653755763396639' passHref>Discord</Link>. However, please don't send a friend request. I won't accept it.
             </p>
         </div>
     )
@@ -30,14 +31,15 @@ Lorem ipsum dolor sit amet diam dignissim eos accusam et est dolore justo elitr 
 
 export async function getStaticProps() {
     //Get files from posts dir
-    const files = fs.readdirSync(path.join('posts'))
+    const files = glob.sync('/**/*.md', { root: path.join(process.cwd(), 'posts') })
+    console.log(files)
 
     //Get slug and frontmatter from posts
     const posts = files.map(filename => {
-        const slug = filename.replace('.md', '')
+        const slug = filename.replace('.md', '').replace(process.cwd(), '').replace('\\posts', '').replace('\\', '').replaceAll('\\', '_')
 
         //Get frontmatter
-        const markdownWithMeta = fs.readFileSync(path.join('posts', filename), 'utf8')
+        const markdownWithMeta = fs.readFileSync(path.join(filename), 'utf8')
 
         const { data: frontmatter } = matter(markdownWithMeta)
 

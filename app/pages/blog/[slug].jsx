@@ -1,10 +1,12 @@
 import fs from 'fs'
+import glob from 'glob'
 import path from 'path'
 import matter from 'gray-matter'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import katex from 'katex'
 import tm from 'markdown-it-texmath'
+import cont from 'markdown-it-container'
 const md = new MarkdownIt({
     langPrefix: 'hljs language-',
     highlight: function (str, lang) {
@@ -13,9 +15,29 @@ const md = new MarkdownIt({
     }
 }).use(tm, {
     engine: katex,
-    delimiters: ['dollars','beg-end'],
+    delimiters: ['dollars', 'beg-end'],
     katexOptions: { macros: { "\\RR": "\\mathbb{R}" } }
-});
+}).use(cont, 'media', {
+    marker: '&',
+    validate: function (params) {
+        return params.trim().match(/(.*)\[(.*)\]\((.*)\)(.*)/);
+    },
+
+    render: function (tokens, idx) {
+        if (tokens[idx].info.trim() === '') return ''
+        var regex = /(.*)\[(.*)\]\((.*)\)(.*)/
+        var content = tokens[idx].info.trim()
+        var mediaType = content.match(regex)[1]
+        var path = content.match(regex)[2]
+        var label = content.match(regex)[3]
+        var caption = content.match(regex)[4]
+        return `<figure>
+                <${mediaType === 'img' ? 'img' : 'video'} src = "${path}" alt = "${caption}" style = "width:100%" />
+                <figcaption><strong>${label}</strong>${caption}</figcaption>
+            </figure > `;
+        //return `<div>${path}:::${label}:::${caption}:::${tokens[idx].info.trim()}:::${/\[(.*)\]\((.*)\)(.*)/}</div>`
+    }
+})
 import 'highlight.js/styles/github.css'
 import 'katex/dist/katex.css'
 import 'markdown-it-texmath/css/texmath.css'
@@ -54,13 +76,16 @@ export default function PostPage({
 }
 
 export async function getStaticPaths() {
-    const files = fs.readdirSync(path.join('posts'))
+    //Get files from posts dir
+    const files = glob.sync('/**/*.md', { root: path.join(process.cwd(), 'posts') })
 
     const paths = files.map((filename) => ({
         params: {
-            slug: filename.replace('.md', ''),
-        },
+                slug: filename.replace('.md', '').replace(process.cwd(), '').replace('\\posts', '').replace('\\', '').replaceAll('\\', '_')
+            }           
     }))
+
+    //console.log('paths: ', paths, path.join('posts', paths[0].params.slug + '.md'))
 
     return {
         paths,
@@ -69,10 +94,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
+    const slugPath = slug.replaceAll('_', '\\')
     const markdownWithMeta = fs.readFileSync(
-        path.join('posts', slug + '.md'),
+        path.join('posts', slugPath + '.md'),
         'utf-8'
     )
+    console.log('slug: ', slug)
 
     const { data: frontmatter, content } = matter(markdownWithMeta)
 

@@ -10,7 +10,7 @@ export default function Post({ post }) {
                 (tag, index) => (<div key={index} className='post-tag'>{tag}</div>)
             )}</div>
             <div className='post-excerpt' >{post.frontmatter.excerpt}</div>
-            <Link href={`/blog/${post.slug}`}>
+            <Link href={`\\blog\\${post.slug}`}>
                 <a className='btn'><span>Read More</span></a>
             </Link>
         </div>
