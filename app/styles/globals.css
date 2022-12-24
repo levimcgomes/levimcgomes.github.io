@@ -64,7 +64,7 @@ h1 {
 
 .recent-posts {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     gap: 25px;
     margin: 1.5vw 0vw;
 }
@@ -90,6 +90,7 @@ h1 {
 .post-preview h3 {
     font-size: 2em;
     margin: 0px;
+    text-align: center;
 }
 
 .post-tags {
@@ -143,7 +144,7 @@ h1 {
     padding: 6px 18px;
     text-align: center;
     cursor: pointer;
-    color: white;
+    color: white !important;
     align: center;
     text-decoration: none;
 }
@@ -215,14 +216,14 @@ h1 {
     font-size: 45px;
 }
 
-.post-body a {
+.page a {
     text-decoration-line: underline;
     text-decoration-color: transparent;
     color: #05A3A1;
     transition-duration: .5s;
 }
 
-    .post-body a:hover {
+    .page a:hover {
         text-decoration-color: #05A3A1;
     }
 
@@ -233,6 +234,6 @@ blockquote {
     padding-left: 5px;
 }
 
-    blockquote p {
-        text-indent: 0px;
-    }
+.post-body blockquote p {
+    text-indent: 0px;
+}

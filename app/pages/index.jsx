@@ -23,7 +23,7 @@ export default function Home({ posts }) {
             <Link href='/archive' passHref><div align='center' ><a className='btn'>&nbsp;See All&nbsp;</a></div></Link>
             <h2 id='about'>About</h2>
             <p className='text'>
-                So, what&amp;#39;s this all <em>about</em>? It&#39;s about how I made a game. Sometimes. Really, it&#39;s about whatever I feel like writing. Most of the time, it will be about making games, but everything is fair game for me. I&#39;ll try to post every other week, but due to other responsiblities (aka. school), I might be unable to fullfil a schedule. If you&#39;d like to contact me for some reason (preferably related to this blog), you can find me on <Link href='https://discordapp.com/users/924653755763396639' passHref>Discord</Link>. However, please don&#39;t send a friend request. I won&#39;t accept it.
+                So, what&#39;s this all <em>about</em>? It&#39;s about how I made a game. Sometimes. Really, it&#39;s about whatever I feel like writing. Most of the time, it will be about making games, but everything is fair game for me. I&#39;ll try to post every other week, but due to other responsiblities (aka. school), I might be unable to fullfil a schedule. If you&#39;d like to contact me for some reason (preferably related to this blog), you can find me on <Link href='https://discordapp.com/users/924653755763396639' passHref>Discord</Link>. However, please don&#39;t send a friend request. I won&#39;t accept it.
             </p>
         </div>
     )
