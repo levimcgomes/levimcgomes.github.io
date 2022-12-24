@@ -81,7 +81,9 @@ export async function getStaticPaths() {
 
     const paths = files.map((filename) => ({
         params: {
-                slug: filename.replace('.md', '').replace(process.cwd(), '').replace('\\posts', '').replace('\\', '').replaceAll('\\', '_')
+            slug: process.platform === 'win32' ?
+                filename.replace('.md', '').replace(process.cwd(), '').replace('\\posts', '').replace('\\', '').replaceAll('\\', '_') :
+                filename.replace('.md', '').replace(process.cwd(), '').replace('/posts', '').replace('/', '').replaceAll('/', '_')
             }           
     }))
 
@@ -94,7 +96,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-    const slugPath = slug.replaceAll('_', '\\')
+    const slugPath = process.platform === 'win32' ? slug.replaceAll('_', '\\') : slug.replaceAll('_', '/')
     const markdownWithMeta = fs.readFileSync(
         path.join('posts', slugPath + '.md'),
         'utf-8'

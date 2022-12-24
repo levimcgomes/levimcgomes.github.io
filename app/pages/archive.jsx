@@ -21,13 +21,12 @@ export default function Archive({ posts }) {
 export async function getStaticProps() {
     //Get files from posts dir
     const files = glob.sync('/**/*.md', { root: path.join(process.cwd(), 'posts')})
-    console.log('archive: ',files)
-    console.log('process: ', process.cwd())
 
     //Get slug and frontmatter from posts
     const posts = files.map(filename => {
-        const slug = filename.replace('.md', '').replace(process.cwd(), '').replace('\\posts', '').replace('\\', '').replaceAll('\\', '_')
-        console.log('trimmed: ', slug)
+        const slug = process.platform === 'win32' ?
+            filename.replace('.md', '').replace(process.cwd(), '').replace('\\posts', '').replace('\\', '').replaceAll('\\', '_') :
+            filename.replace('.md', '').replace(process.cwd(), '').replace('/posts', '').replace('/', '').replaceAll('/', '_')
 
         //Get frontmatter
         const markdownWithMeta = fs.readFileSync(path.join(filename), 'utf8')//'posts', 
