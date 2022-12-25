@@ -3,7 +3,7 @@ title: "Metroidvania Devlog 0: Introduction"
 date: "24/12/2022"
 cover_image: "images/posts/metroidvania/devlog0_cover.png"
 tags: ["metroidvania", "devlog", "Unity", "multiplayer"]
-excerpt: "The firs in a series of devlogs about a metroidvania game"
+excerpt: "The first in a series of devlogs about a metroidvania game"
 ---
 
 As the title suggests, this is the first (the zero-th?) in a series of devlogs about a metroidvania game. In other words, I'm making a [metroidvania](https://en.wikipedia.org/wiki/Metroidvania), and I'm going to write about it, trying my best to explain how I'm making things happen the right way, so that, hopefully, you'll get some understanding of how I made this game. This post will serve as an introduction, telling you many random things tha are probably nice to know. So, without further ado, let's see what this is all about.
