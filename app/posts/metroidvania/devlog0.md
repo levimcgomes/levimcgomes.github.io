@@ -1,7 +1,7 @@
 ---
 title: "Metroidvania Devlog 0: Introduction"
 date: "24/12/2022"
-cover_image: "images/posts/img1.jpg"
+cover_image: "images/posts/metroidvania/devlog0_cover.png"
 tags: ["metroidvania", "devlog", "Unity", "multiplayer"]
 excerpt: "The firs in a series of devlogs about a metroidvania game"
 ---
