@@ -47,4 +47,4 @@ Yes, [that's a thing](https://discord.com/developers/docs/game-sdk/sdk-starter-g
  In case you didn't understand from the tools section, I'm a programmer. I'm not an artist. That's why I'm not alone. I'm working with two other guys to make this game: an artist, and a... gameplay/storytelling designer? That's the best description I can come up with. Basically he just listens to my ideas and contributes with some more ideas.
 
  ## Conclusion
- This would probably be the part where I ask you to subscribe to my newsletter to stay up to date with this blog, but I don't have one. So, I hope you enjoyed reading this, hopefully enough to come back for more, and I guess I'll see you on the next post. Or maybe talk to you. I'm not really seeing you, am I?
+ This would probably be the part where I ask you to subscribe to my newsletter to stay up to date with this blog, but I don't have one. So, I hope you enjoyed reading this, hopefully enough to come back for more, and I guess I'll see you on the next post. Or maybe talk to you. I'm not really seeing you, am I? Until then, have a merry Christmas!

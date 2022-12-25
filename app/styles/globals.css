@@ -87,6 +87,15 @@ h1 {
     margin-right: auto;
 }
 
+.post-full-image {
+    padding: 1.25vw 0vw 0.25vw;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .post-preview h3 {
     font-size: 2em;
     margin: 0px;
@@ -181,7 +190,7 @@ h1 {
     padding: 6px 18px;
     text-align: center;
     cursor: pointer;
-    color: white;
+    color: white !important;
     align: center;
     display: inline-block;
     width: 100px;

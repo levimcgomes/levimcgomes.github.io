@@ -32,7 +32,7 @@ const md = new MarkdownIt({
         var label = content.match(regex)[3]
         var caption = content.match(regex)[4]
         return `<figure>
-                <${mediaType === 'img' ? 'img' : 'video'} src = "${path}" alt = "${caption}" style = "width:100%" />
+                <${mediaType === 'img' ? 'img' : 'video'} src = "../${path}" alt = "${caption}" style = "width:100%" />
                 <figcaption><strong>${label}</strong>${caption}</figcaption>
             </figure > `;
         //return `<div>${path}:::${label}:::${caption}:::${tokens[idx].info.trim()}:::${/\[(.*)\]\((.*)\)(.*)/}</div>`
@@ -59,11 +59,11 @@ export default function PostPage({
             </Link>
             <div className='post-page'>
                 <h1 className='post-title'>{title}</h1>
+                <img className='post-full-image' src={'../' + cover_image} alt='' />
                 <div className='post-date'>Posted on {date}</div>
                 <div className='post-tags'>{tags.map(
                     (tag, index) => (<div key={index} className='post-tag'>{tag}</div>)
                 )}</div>
-                <img className='post-image' src={cover_image} alt='' />
                 <div className='post-body'>
                     <div dangerouslySetInnerHTML={{
                         __html: md.render(content)
