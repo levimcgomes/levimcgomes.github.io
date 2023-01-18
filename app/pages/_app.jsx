@@ -16,6 +16,15 @@ function MyApp({ Component, pageProps }) {
                 <meta name="theme-color" content="#ffffff" />
                 <meta name="google-site-verification" content="oliS-hJhDV0wCNFfVhfAC0igKcuVEDSj6XCaqtuSwQA" />
             </Head>
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XQ38SS8N1"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-4XQ38SS8N1');
+            </script>
             <Header />
             <main className='page'>
                 <Component {...pageProps} />
