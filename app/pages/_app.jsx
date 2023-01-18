@@ -13,7 +13,8 @@ function MyApp({ Component, pageProps }) {
                 <link rel="manifest" href="/site.webmanifest"/>
                 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000"/>
                 <meta name="msapplication-TileColor" content="#2b5797"/>
-                <meta name="theme-color" content="#ffffff"/>
+                <meta name="theme-color" content="#ffffff" />
+                <meta name="google-site-verification" content="oliS-hJhDV0wCNFfVhfAC0igKcuVEDSj6XCaqtuSwQA" />
             </Head>
             <Header />
             <main className='page'>
