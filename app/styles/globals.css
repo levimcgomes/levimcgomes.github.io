@@ -246,3 +246,30 @@ blockquote {
 .post-body blockquote p {
     text-indent: 0px;
 }
+
+code {
+    /*font: normal inherit 'Consolas';*/
+    font-weight: inherit;
+    font-size: 80%;
+}
+
+pre code {
+    font-size: inherit;
+    background: #EEEEEE;
+}
+
+pre code table {
+    background: inherit;
+}
+
+.line-number {
+    padding: 0px;
+    color: #77AAAA;
+    background-color: inherit;
+    text-align: end;
+}
+
+.code-line {
+    padding: 0px;
+    padding-left: 10px;
+}

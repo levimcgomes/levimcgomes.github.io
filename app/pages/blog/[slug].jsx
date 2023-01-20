@@ -7,12 +7,37 @@ import hljs from 'highlight.js'
 import katex from 'katex'
 import tm from 'markdown-it-texmath'
 import cont from 'markdown-it-container'
+
+const applyLineNumbers = (code) => {
+    const lines = code.trim().split('\n');
+
+    const rows = lines.map((line, idx) => {
+        const lineNumber = idx + 1;
+
+	    let html = '<tr>';
+	    html += `<td class="line-number">${lineNumber}</td>`;
+	    html += `<td class="code-line">${line}</td>`;
+	    html += '</tr>';
+        return html;
+    });
+    return `<table><tbody>${rows.join('')}</tbody></table>`;
+};
 const md = new MarkdownIt({
     langPrefix: 'hljs language-',
-    highlight: function (str, lang) {
-        const language = hljs.getLanguage(lang) ? lang : 'plaintext'
-        return hljs.highlight(str, { language }).value
-    }
+    highlight: (str, lang, attrRaw = '') => {
+	    const attrs = attrRaw.split(/\s+/g);
+	    const showLineNumbers = attrs.includes('showLineNumbers');
+
+	    let code = lang && hljs.getLanguage(lang)
+                    ? hljs.highlight(str, {language: lang,ignoreIllegals: true,}).value
+                    : md.utils.escapeHtml(str);
+
+	    if (showLineNumbers) {
+	      code = applyLineNumbers(code);
+        }
+	    return `<pre class="hljs"><code>${code}</code></pre>`;
+
+}
 }).use(tm, {
     engine: katex,
     delimiters: ['dollars', 'beg-end'],
