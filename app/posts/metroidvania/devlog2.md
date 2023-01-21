@@ -1,7 +1,7 @@
 ---
 title: "Metroidvania Devlog 2: State Machine Player Controller"
 date: "20/1/2022"
-cover_image: "images/posts/metroidvania/devlog2_cover.png"
+cover_image: "images/posts/metroidvania/devlog2_cover.gif"
 tags: ["metroidvania", "devlog", "Unity", "Player Controller"]
 excerpt: "In this post, we delve deep into the implementation of a Player Controller"
 ---
