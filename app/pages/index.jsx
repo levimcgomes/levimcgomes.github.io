@@ -27,12 +27,12 @@ export default function Home({ posts }) {
             </p>
             <h2>Random stuff</h2>
             <p className='text'>
-                This paragraph is just what it's name says it is: random stuff. Firstly, some links.
+                This paragraph is just what it&#39;s name says it is: random stuff. Firstly, some links.
                 <ul>
                     <li><Link href='https://github.com/levimcgomes/' passHref>My GitHub account</Link></li>
                     <li><Link href='https://github.com/levimcgomes/levimcgomes.github.io' passHref>This website's source code</Link></li>
                 </ul>
-                Next, some utilities I've made for myself and put in this site for ease of access. Enjoy! (please note that these were made for personal use, so they're very low quality tools; however, I do think they're useful)
+                Next, some utilities I&#39;ve made for myself and put in this site for ease of access. Enjoy! (please note that these were made for personal use, so they&#39;re very low quality tools; however, I do think they&#39;re useful)
                 <ul>
                     <li><Link href='/hidden/color' passHref>Color Palette Helper</Link></li>
                 </ul>
