@@ -1,0 +1,13 @@
+.swatches {
+    display: flex;
+    flex-direction: row;
+}
+
+.stick {
+    position: sticky;
+    top: 0;
+}
+
+.sep {
+    padding-right: 70px;
+}

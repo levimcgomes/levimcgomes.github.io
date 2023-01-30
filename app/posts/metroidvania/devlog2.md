@@ -53,7 +53,7 @@ This particular system has five main components:
  ### The ``Player`` component
  At the start of this post, I stated that Bardent's player controller was amazing (and it is), but if I had to choose something I don't like about it, it'd be the ``Player`` script. It's a mishmash of random functionality: 
  - it holds an exhaustive list of all the ``PlayerState``'s, so that states can change to other states,
- - it has functions to do common tasks like set the player’s velocity,
+ - it has functions to do common tasks like set the player's velocity,
  - it has function to check certain conditions, like being grounded,
  - and it has some more random functions.
  
