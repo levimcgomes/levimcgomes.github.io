@@ -44,202 +44,202 @@ export default function ColorPage() {
                 }} />
             <h3>Analogous</h3>
             <div className={styles.swatches}>
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <h3>Complement</h3>
             <div className={styles.swatches}>
-                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetComplementScheme(hsva), s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <h3>Triadic</h3>
             <div className={styles.swatches}>
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <div className={styles.swatches}>
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <div className={styles.swatches}>
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTriadicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <h3>Tetradic</h3>
             <div className={styles.swatches}>
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme(hsva).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme(hsva).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <div className={styles.swatches}>
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[0], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <div className={styles.swatches}>
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[1], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
             </div>
             <div className={styles.swatches}>
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetSaturationGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetValueGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroup({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
-                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue) => (
-                    <div className={styles.swatches}>
+                {GetSimilarScheme({ h: GetTetradicScheme(hsva)[2], s: SVDefault, v: SVDefault, a: 1 }).map((hue, index) => (
+                    <div key={`${index}+${hue}`} className={styles.swatches}>
                         {GetToneGroupInv({ h: hue, s: SVDefault, v: SVDefault, a: 1 }, handlePalette, palette)}
                     </div>
                 ))}
