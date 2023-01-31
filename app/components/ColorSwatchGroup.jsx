@@ -5,7 +5,7 @@ export default function ColorSwatchGroup({ colors, direction, copy = false, addT
     return (
         <div className={direction === "h" ? styles.hgroup : styles.vgroup}>
             {colors.map((color, index) => 
-                (<ColorSwatch key={index} color={color} copy={copy} addToPalette={addToPalette} palette={palette}></ColorSwatch>)
+                (<ColorSwatch key={`${color}-${index}`} color={color} copy={copy} addToPalette={addToPalette} palette={palette}></ColorSwatch>)
             )}
         </div>
     )

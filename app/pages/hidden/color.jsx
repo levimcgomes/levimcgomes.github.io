@@ -13,12 +13,15 @@ export default function ColorPage() {
     const [palette, setPalette] = useState(["NAC"])
     const [RGBHEX, setRGBHEX] = useState("")
     const handlePalette = (color) => {
-        setPalette(current => [color])
+        setPalette(color)
     }
     return (
         <>
             <div style={{ padding: 10 }}></div>
-            <ColorSwatchGroup colors={[...palette[0]]} direction="h" copy></ColorSwatchGroup>
+            <ColorSwatchGroup colors={palette} direction="h" copy></ColorSwatchGroup>
+            <button onClick={(e) => {
+                setPalette([""])
+            }}>CLEAR</button>
             <input onKeyPress={(e) => {
                 if (e.key === "Enter") {
                     e.preventDefault()

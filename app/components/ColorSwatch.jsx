@@ -12,8 +12,8 @@ function clickHandle(color, copy, palette, setPalette, selected, Select) {
     if (copy) {
         navigator.clipboard.writeText(color)
     } else {
-        var pal = [...palette[0]]
-        if (pal[0] === "N") {
+        var pal = [...palette]
+        if (pal[0] === "NAC") {
             pal=[]
         }
         if (selected) {
