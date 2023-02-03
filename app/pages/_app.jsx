@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }) {
                 <meta name="msapplication-TileColor" content="#2b5797"/>
                 <meta name="theme-color" content="#ffffff" />
                 <meta name="google-site-verification" content="oliS-hJhDV0wCNFfVhfAC0igKcuVEDSj6XCaqtuSwQA" />
+                <script src="/js/mode.js"></script>
             </Head>
             <Header />
             <main className='page'>

@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import ClientOnly from "./ClientOnly"
+import ModeToggle from "./ModeToggle"
 
 export default function Header() {
     return (
@@ -8,6 +10,7 @@ export default function Header() {
                     <Link href='/#about' passHref>About</Link>
                     <Link href='/archive' passHref>All Posts</Link>
                     <Link href='/' passHref>Home</Link>
+                    <ModeToggle></ModeToggle>
                 </div>
             </div>
     )

@@ -1,5 +1,9 @@
 body {
     margin: 0px;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    transition: color ease-in-out .1s,
+                background-color ease-in-out .1s;
 }
 
 .header-container {
@@ -12,6 +16,12 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.header-container div{
+    display: flex;
+    align-content: flex-end;
+    flex-direction: row;
 }
 
     .header-container div > *:not(:last-child) {
@@ -27,7 +37,8 @@ body {
     }
 
         .header-container a:hover {
-            text-decoration-color: #05A3A1;
+            text-decoration-color: var(--color-primary);
+            transition: text-decoration-color ease-in-out .1s;
         }
 
 .page {
@@ -113,9 +124,12 @@ h1 {
 .post-tag {
     padding: 0vw .75vw .15vw;
     margin: .25vw .5vw;
-    background: #CCEFEF;
-    border-top: 2pt solid #05A3A1;
-    border-bottom: 2pt solid #05A3A1;
+    background: var(--color-secondary);
+    border-top: 2pt solid var(--color-primary);
+    border-bottom: 2pt solid var(--color-primary);
+    transition: background ease-in-out .1s,
+                border-top-color ease-in-out .1s,
+                border-bottom-color ease-in-out .1s;
 }
 
 .post-date {
@@ -147,7 +161,7 @@ h1 {
 }
 
 .btn {
-    background-color: #05A3A1;
+    background-color: var(--color-primary);
     border-radius: 5px;
     font-size: 1.8em;
     padding: 6px 18px;
@@ -156,6 +170,7 @@ h1 {
     color: white !important;
     align: center;
     text-decoration: none;
+    transition: background-color ease-in-out .1s;
 }
 
     .btn span {
@@ -184,7 +199,7 @@ h1 {
         }
 
 .btn-back {
-    background-color: #05A3A1;
+    background-color: var(--color-primary);
     border-radius: 5px;
     font-size: 1em;
     padding: 6px 18px;
@@ -194,6 +209,7 @@ h1 {
     align: center;
     display: inline-block;
     width: 100px;
+    transition: background-color ease-in-out .1s;
 }
 
     .btn-back span {
@@ -228,19 +244,23 @@ h1 {
 .page a {
     text-decoration-line: underline;
     text-decoration-color: transparent;
-    color: #05A3A1;
+    color: var(--color-primary);
     transition-duration: .5s;
+    transition: color ease-in-out .1s;
 }
 
     .page a:hover {
-        text-decoration-color: #05A3A1;
+        text-decoration-color: var(--color-primary);
+        transition: text-decoration-color ease-in-out .1s;
     }
 
 blockquote {
     font-size: 20px;
-    background: #CCEFEF;
-    border-left: 5px solid #05A3A1;
+    background: var(--color-secondary);
+    border-left: 5px solid var(--color-primary);
     padding-left: 5px;
+    transition: background ease-in-out .1s,
+                border-left ease-in-out .1s;
 }
 
 .post-body blockquote p {
@@ -255,21 +275,66 @@ code {
 
 pre code {
     font-size: inherit;
-    background: #EEEEEE;
+    background: var(--color-codeback);
+    color: var(--color-codetext);
+    transition: background ease-in-out .1s,
+                color ease-in-out .1s;
 }
 
 pre code table {
     background: inherit;
+    width: 100%;
 }
 
 .line-number {
     padding: 0px;
-    color: #77AAAA;
+    color: var(--color-codeline);
     background-color: inherit;
     text-align: end;
+    transition: color ease-in-out .1s;
 }
 
 .code-line {
     padding: 0px;
     padding-left: 10px;
+}
+
+.quote-surround {
+    text-align: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 60% 1fr;
+    font-style: italic;
+}
+
+    .quote-surround > *:not(:is(::before,::after)) {
+        grid-column: 2;
+    }
+
+    .quote-surround::before,
+    .quote-surround::after {
+        font-size: 4em;
+        color: var(--color-primary);
+    }
+
+    .quote-surround::before {
+        grid-column: 1;
+        content: '\201C';
+        align-self: start;
+        justify-self: end;
+    }
+
+    .quote-surround::after {
+        grid-column: 3;
+        content: '\201D';
+        align-self: end;
+        justify-self: start;
+        position: relative;
+        top: 1ex;
+    }
+
+.theme-toggle {
+    background-color: transparent;
+    border-style: none;
+    padding: 0px;
 }

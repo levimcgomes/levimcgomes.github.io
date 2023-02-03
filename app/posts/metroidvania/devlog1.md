@@ -1,6 +1,6 @@
 ---
 title: "Metroidvania Devlog 1: Networking Solutions"
-date: "6/1/2022"
+date: "6/1/2023"
 cover_image: "images/posts/metroidvania/devlog1_cover.png"
 tags: ["metroidvania", "devlog", "Unity", "multiplayer"]
 excerpt: "As I mentioned in the last post, choosing the networking solution was quite a arduous task. So let's take a look at all the options I considered."

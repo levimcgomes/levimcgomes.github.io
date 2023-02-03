@@ -62,6 +62,17 @@ const md = new MarkdownIt({
             </figure > `;
         //return `<div>${path}:::${label}:::${caption}:::${tokens[idx].info.trim()}:::${/\[(.*)\]\((.*)\)(.*)/}</div>`
     }
+}).use(cont, 'quote', {
+    marker: '@',
+    validate: function (params) {
+        return true;
+    },
+
+    render: function (tokens, idx) {
+        if (tokens[idx].nesting === 1) return `<div class="quote-surround">`
+        else return `</div>`;
+        //return `<div>${path}:::${label}:::${caption}:::${tokens[idx].info.trim()}:::${/\[(.*)\]\((.*)\)(.*)/}</div>`
+    }
 })
 import 'highlight.js/styles/github.css'
 import 'katex/dist/katex.css'
