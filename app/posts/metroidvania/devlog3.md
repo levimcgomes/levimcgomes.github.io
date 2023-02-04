@@ -24,7 +24,7 @@ I believe a story isn't one thing, but instead a collection of things. Think of 
   - What story do **you** want to tell?
   - What message do you want to pass to the players?
   
-  That last one is quite important. It is not necessary to pass a message, but is something you can do, if you think it'll enhance the story. And, assuming you get some popularity, it's a very powerful way to convey something. For example, you might use the story to spark a sense of injustice in the players, incentivizing them to stand up against it. Or you might present them with morally grey situations, and make them reflect about something. It's a sea of possibilities. Of course, you might tell a story for the sake of telling a story, without any message. And that's fine too, and the story can be amazing nonetheless.
+  That last one is quite important. It is not necessary to pass a message, but is something you can do, if you think it'll enhance the story. And, assuming you get some popularity, it's a very powerful way to convey something. For example, you might use the story to spark a sense of injustice in the players, encouraging them to stand up against it. Or you might present them with morally grey situations, and make them reflect about something. It's a sea of possibilities. Of course, you might tell a story for the sake of telling a story, without any message. And that's fine too, and the story can be amazing nonetheless.
  
  So let's take a look at how each of the parts mentioned previously can fit into a game.
 
