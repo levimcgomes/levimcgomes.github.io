@@ -17,11 +17,10 @@ function MyApp({ Component, pageProps }) {
                 <meta name="google-site-verification" content="oliS-hJhDV0wCNFfVhfAC0igKcuVEDSj6XCaqtuSwQA" />
                 <script src="/js/mode.js"></script>
             </Head>
-            <!-- Google tag (gtag.js) -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XQ38SS8N1"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                function gtag(){dataLayer.push(arguments)}
                 gtag('js', new Date());
 
                 gtag('config', 'G-4XQ38SS8N1');
