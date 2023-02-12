@@ -18,13 +18,7 @@ function MyApp({ Component, pageProps }) {
                 <script src="/js/mode.js"></script>
             </Head>
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XQ38SS8N1"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments)}
-                gtag('js', new Date());
-
-                gtag('config', 'G-4XQ38SS8N1');
-            </script>
+            <script src="/js/gtag.js"></script>
             <Header />
             <main className='page'>
                 <Component {...pageProps} />
