@@ -96,7 +96,7 @@ export default function PostPage({
             <div className='post-page'>
                 <h1 className='post-title'>{title}</h1>
                 <img className='post-full-image' src={'../' + cover_image} alt='' />
-                <div className='post-date'>Posted on {date}</div>
+                <div className='post-date'>{date}</div>
                 <div className='post-tags'>{tags.map(
                     (tag, index) => (<div key={index} className='post-tag'>{tag}</div>)
                 )}</div>

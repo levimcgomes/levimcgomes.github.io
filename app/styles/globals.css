@@ -338,3 +338,16 @@ pre code table {
     border-style: none;
     padding: 0px;
 }
+
+.post-body ol {
+    counter-reset: item;
+}
+
+.post-body ol>li {
+    display: block;
+}
+
+.post-body ol>li::before {
+    content: counters(item, ".") ". ";
+    counter-increment: item;
+}
