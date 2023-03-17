@@ -343,11 +343,11 @@ pre code table {
     counter-reset: item;
 }
 
-.post-body ol>li {
-    display: block;
-}
+    .post-body ol > li {
+        /*display: block;*/
+        counter-increment: item;
+    }
 
-.post-body ol>li::before {
-    content: counters(item, ".") ". ";
-    counter-increment: item;
-}
+        .post-body ol > li::marker {
+            content: counters(item, ".") ". ";
+        }
