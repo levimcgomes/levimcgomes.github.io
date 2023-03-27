@@ -67,6 +67,7 @@ h1 {
 
 .page h2, h3, h4, h5, h6 {
     text-align: left;
+    text-decoration: underline 3px var(--color-primary);
 }
 
 .page p {
@@ -273,6 +274,10 @@ code {
     font-size: 80%;
 }
 
+pre.hljs {
+    background: var(--color-codeback);
+}
+
 pre code {
     font-size: inherit;
     background: var(--color-codeback);
@@ -280,6 +285,14 @@ pre code {
     transition: background ease-in-out .1s,
                 color ease-in-out .1s;
 }
+
+    pre code .hljs-subst {
+        color: var(--color-codetext);
+    }
+
+    pre code .hljs-string {
+        color: #011d9b;
+    }
 
 pre code table {
     background: inherit;

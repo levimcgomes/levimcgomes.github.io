@@ -56,8 +56,11 @@ const md = new MarkdownIt({
         var path = content.match(regex)[2]
         var label = content.match(regex)[3]
         var caption = content.match(regex)[4]
+        var media = mediaType === 'img' ?
+            `<img src = "../${path}" alt = "${caption}" style = "width:100%" />` :
+            `<video style = "width:100%" alt = "${caption}" controls src = "../${path}" ></video>`
         return `<figure>
-                <${mediaType === 'img' ? 'img' : 'video'} src = "../${path}" alt = "${caption}" style = "width:100%" />
+                ${media}
                 <figcaption><strong>${label}</strong>${caption}</figcaption>
             </figure > `;
         //return `<div>${path}:::${label}:::${caption}:::${tokens[idx].info.trim()}:::${/\[(.*)\]\((.*)\)(.*)/}</div>`
@@ -89,6 +92,21 @@ export default function PostPage({
         <>
             <Head>
                 <title>{title} | How I Made A Game</title>
+                <script src="https://giscus.app/client.js"
+                    data-repo="levimcgomes/levimcgomes.github.io"
+                    data-repo-id="R_kgDOH_rqaA"
+                    data-category="Blog Comments"
+                    data-category-id="DIC_kwDOH_rqaM4CVNZX"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="1"
+                    data-emit-metadata="1"
+                    data-input-position="top"
+                    data-theme="dark-dimmed"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+                </script>
             </Head>
             <Link href='/'>
                 <div align='right' ><a className='btn-back'><span>Go Back</span></a></div>
@@ -107,6 +125,7 @@ export default function PostPage({
                     </div>
                 </div>
             </div>
+            <div className='giscus'></div>
         </>
     )
 }
