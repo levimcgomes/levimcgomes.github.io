@@ -92,7 +92,7 @@ export default function PostPage({
         <>
             <Head>
                 <title>{title} | How I Made A Game</title>
-                <script src="https://giscus.app/client.js"
+                <script id="giscus-script" src="https://giscus.app/client.js"
                     data-repo="levimcgomes/levimcgomes.github.io"
                     data-repo-id="R_kgDOH_rqaA"
                     data-category="Blog Comments"

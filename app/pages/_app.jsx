@@ -1,6 +1,7 @@
 import Header from '../components/Header'
 import Head from 'next/head'
 import '../styles/globals.css'
+import '../styles/giscus.css'
 //import '../styles/github-markdown.css'
 
 function MyApp({ Component, pageProps }) {
