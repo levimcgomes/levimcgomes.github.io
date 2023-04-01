@@ -56,11 +56,43 @@ namespace PhysicsSimTester
         public static int Res;
         public static int TextUnits { get => Res / 100; }
         public static Font font;
+
+        // Variables used for the debug interface
+        private struct SmoothDebugFloat {
+            private const int cacheMax = 64;
+            private int currentIndex;
+            private float[] cachedValues;
+            private float sum;
+            public float AverageValue { get => sum / cacheMax; }
+
+            public SmoothDebugFloat() {
+                currentIndex = 0;
+                cachedValues = new float[cacheMax];
+                sum = 0;
+            }
+            public void FeedValue(float value) {
+                sum -= cachedValues[currentIndex];
+                sum += value;
+                cachedValues[currentIndex] = value;
+                currentIndex = (currentIndex + 1) % cacheMax;
+            }
+        }
+        private static SmoothDebugFloat deltaTime;
+
         
-        private const int maximumStoredDeltaTimes = 64;
-        private static int currentDeltaTimeIndex = 0;
-        private static float sumOfDeltaTimes = 0;
-        private static float[] previousDeltaTimes = new float[maximumStoredDeltaTimes];
+        public static void Init(int res) {
+            // Set the resolution
+            Res = res;
+
+            // Initialize Raylib
+            Raylib.InitWindow(Res, Res, "Physics Sim");
+            Raylib.SetTraceLogLevel(TraceLogLevel.LOG_ALL);
+            Raylib.SetTargetFPS(200);
+            // Load a better font
+            font = Raylib.LoadFontEx("times.ttf", 256, null, 1024);
+
+            deltaTime = new SmoothDebugFloat();
+        }
 
         public static void DrawAll(params Particle[] objects) {
             foreach (var obj in objects) {
@@ -72,16 +104,12 @@ namespace PhysicsSimTester
         }
 
         public static void DrawDebugInterface(float dt) {
-            float avg = ProcessDeltaTime(dt);
-            DrawDebugLine($"{(1 / avg).ToString("F0")} FPS", 2, 2);
+            // Feed the delta time to the corresponding smooth value
+            deltaTime.FeedValue(dt);
+
+            // Write info to the screen
+            DrawDebugLine($"{objects.Length} objects @ {(1 / deltaTime.AverageValue).ToString("F0")} FPS", 2, 2);
             DrawDebugLine($"{(dt*1000).ToString("F4")}Δt (in ms)", 2, 4);
-        }
-        private static float ProcessDeltaTime(float dt) {
-            sumOfDeltaTimes -= previousDeltaTimes[currentDeltaTimeIndex];
-            sumOfDeltaTimes += dt;
-            previousDeltaTimes[currentDeltaTimeIndex] = dt;
-            currentDeltaTimeIndex = (currentDeltaTimeIndex + 1) % maximumStoredDeltaTimes;
-            return sumOfDeltaTimes / maximumStoredDeltaTimes;
         }
         private static void DrawDebugLine(string line, float x, float y) {
             Raylib.DrawTextEx(font, line, new System.Numerics.Vector2(x * ScreenUnit, y * ScreenUnit),
@@ -96,15 +124,15 @@ namespace PhysicsSimTester
 
 ```
 
-Thats's a lot, so let's break it down. The first few variables are just useful miscelaneous stuff. Then we have a few variables related to delta time. Usually in programming, delta time refers to the duration of the last frame, which has many applications.  Here, we're storing a list of the last 64 delta times, so we can average them (that's what ProcessDeltaTime does). We need an average because otherwise the number would always be changing, which would make it hard to read. We then declare a ``DrawAll`` function which is responsible for drawing all the particles to the screen. To achive this, it calls ``Draw`` for every particle. For now, ``Draw`` does nothing, so we'll have to come back to it. We also have a function to draw some usefull debugging information to the screen. It only displays the framerate and delta time, but as we move on we'll add more and more info to it.
+Thats's a lot, so let's break it down. Firstly, we declare a few variables for convenience. Next we declare the ``SmoothDebugFloat`` struct. This struct holds a list ov previous values of *something* and computes their average. This way, values that change very fast are smoothed. As we need to write more and more debug info, this will become very usefull. For now, we're using it only for delta time. Then we initialize the visualization. We set the resolution, open a window, set the log level (what kind of info Raylib should output to the console), set the desired FPS, load a font ant initialize our delta time. Next, the ``DrawAll`` function receives a list of particles and ``Draw``s each one of them. For now, we don't actually ddraw anything. Finally, we have a function to draw some debug info to the screen.
+
+For the font loading to work, it is necessary to have a font file in the same folder as the program. To get the file, if you're on Windows, you can go to ``C:\Windows\Fonts`` and search for the font family you want (for instance, I chose Times New Roman). Then open it and copy the specific font (I chose the normal one, but you could use bold or italic). Open your project's root folder and navigate to the folder where the ``.exe`` file is, and paste the font file.
 
 Now it's only a matter of calling these functions from ``Main``.
 ```cs showLineNumbers
 private static void Main(string[] args) 
-        // Initialize Raylib
-        Raylib.InitWindow(800, 800, "Physics Sim");
-        Raylib.SetTraceLogLevel(TraceLogLevel.LOG_ALL);
-        Raylib.SetTargetFPS(200);
+        // Init the visualization
+        Visualization.Init(800);
         
         // Core loop
         while(!Raylib.WindowShouldClose()) {
@@ -119,4 +147,4 @@ private static void Main(string[] args)
     }
 ```
 
-And this concludes what we could call the frontend of this app. Before we start implementing the simulation itself, it's necessary to review a lot of maths and physics. So, not to make this post enormous, I'll postpone that for the next post, making this one a shorter one. I'm really excited for this project, and I hopefully so are you. Until the next time, have some fun toying around with Raylib! As a side note, I'd advise you to study some [calculus](https://youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) and [linear algebra](https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) while you're waiting for the next post, especially if you don't know much about these topics, because they'll be very important. And finally, you can find the source code for this project (although at a later stage) on [GitHub](https://github.com/levimcgomes/PhysicsSim)
+And this concludes what we could call the frontend of this app. Before we start implementing the simulation itself, it's necessary to review a lot of maths and physics. So, not to make this post enormous, I'll postpone that for the next post, making this one a shorter one. I'm really excited for this project, and I hopefully so are you. Until the next time, have some fun toying around with Raylib! As a side note, I'd advise you to study some [calculus](https://youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) and [linear algebra](https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) while you're waiting for the next post, especially if you don't know much about these topics, because they'll be very important. And finally, you can find the source code for this project (although at a later stage) on [GitHub](https://github.com/levimcgomes/PhysicsSim).
