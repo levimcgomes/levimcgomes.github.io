@@ -43,19 +43,21 @@ var mode = "light";
     }
     mode = getInitialColorMode();
     const root = document.documentElement;
-    var comments
+    var comments = null;
     function findComments() {
-        comments = root.querySelector("#giscus-script")
-        if (comments !== null) console.log(comments.getAttribute("data-theme"));
+        comments = root.querySelector(".giscus-frame");
+        if (comments !== null) console.log(comments);
         if (comments !== null) {
-            comments.setAttribute("data-theme",
-                mode === 'light'
-                    ? 'light'
-                    : 'dark-dimmed');
+            src = comments.getAttribute("src");
+            if (mode === "light" && src.includes("dark-dimmed")) {
+                src = src.replace("dark-dimmed", "light");
+                comments.setAttribute("src", src);
+            }
         }
     }
-    findComments();
+    findComments()
     function setAttributesFromMode() {
+        console.log("CHANGE");
         root.style.setProperty(
             '--color-text',
             mode === 'light'
@@ -100,18 +102,12 @@ var mode = "light";
         );
         root.setAttribute("mode", mode);
         if (comments !== null) {
-            commsDiv = root.querySelector(".giscus");
-            commsDivParent = commsDiv.parentElement;
-            commsDivParent.removeChild(commsDiv);
-            commsDivParent.appendChild(commsDiv.cloneNode(false));
-            newComments = comments.cloneNode(false);
-            newComments.setAttribute("data-theme",
-                mode === 'light'
-                    ? 'light'
-                    : 'dark-dimmed');
-            root.querySelector("head").removeChild(comments);
-            root.querySelector("head").appendChild(newComments);
-            comments = newComments;
+            src = comments.getAttribute("src");
+            console.log("CHANGE COMMENTS");
+            (mode === "light") ?
+                src = src.replace("dark-dimmed", "light") :
+                src = src.replace("light", "dark-dimmed");
+            comments.setAttribute("src", src);
         }
 
     }
