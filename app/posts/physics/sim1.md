@@ -3,7 +3,7 @@ title: "How Maths models Movement: Physics Engine Tutorial 1"
 date: "14/4/2023"
 cover_image: "images/posts/physics/sim1_cover.png"
 tags: ["physics", "simulation", "tutorial"]
-excerpt: "Starting from nothing, we'll get to downwards moving particles."
+excerpt: "We'll review the maths needed to simulate physically accurate movement."
 ---
 
 In the last post, we set up a simple Raylib application to allow us to view the simulation we were going to make. Today, let's look at all the maths and physics needed to simulate physics. Without further ado, let's get started!
