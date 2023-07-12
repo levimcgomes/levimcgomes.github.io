@@ -4,7 +4,7 @@
         <title>Blog posts | RSS Feed</title>
         <link>https://levimcgomes.github.io</link>
         <description>A blog about game development and much more!</description>
-        <lastBuildDate>Wed, 12 Jul 2023 14:25:05 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 12 Jul 2023 16:37:37 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -16,7 +16,7 @@
         <item>
             <link>https://levimcgomes.github.io/blog/metroidvania_devlog0</link>
             <guid>https://levimcgomes.github.io/blog/metroidvania_devlog0</guid>
-            <pubDate>Invalid Date</pubDate>
+            <pubDate>Sat, 24 Dec 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[The first in a series of devlogs about a metroidvania game]]></description>
             <content:encoded><![CDATA[
 As the title suggests, this is the first (the zero-th?) in a series of devlogs about a metroidvania game. In other words, I'm making a [metroidvania](https://en.wikipedia.org/wiki/Metroidvania), and I'm going to write about it, trying my best to explain how I'm making things happen the right way, so that, hopefully, you'll get some understanding of how I made this game. This post will serve as an introduction, telling you many random things that are probably nice to know. So, without further ado, let's see what this is all about.
@@ -65,7 +65,7 @@ Yes, [that's a thing](https://discord.com/developers/docs/game-sdk/sdk-starter-g
         <item>
             <link>https://levimcgomes.github.io/blog/metroidvania_devlog1</link>
             <guid>https://levimcgomes.github.io/blog/metroidvania_devlog1</guid>
-            <pubDate>Thu, 01 Jun 2023 00:00:00 GMT</pubDate>
+            <pubDate>Fri, 06 Jan 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[As I mentioned in the last post, choosing the networking solution was quite a arduous task. So let's take a look at all the options I considered.]]></description>
             <content:encoded><![CDATA[
 As I mentioned in the last post, choosing the networking solution was quite an arduous task. So let's take a look at all the options I considered.
@@ -122,7 +122,7 @@ The next post was going to be about how I made a transport using Discord GameSDK
         <item>
             <link>https://levimcgomes.github.io/blog/metroidvania_devlog2</link>
             <guid>https://levimcgomes.github.io/blog/metroidvania_devlog2</guid>
-            <pubDate>Invalid Date</pubDate>
+            <pubDate>Fri, 20 Jan 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[In this post, we delve deep into the implementation of a Player Controller]]></description>
             <content:encoded><![CDATA[
 Being quite tired of dealing with networking and multiplayer, I decided to start implementing the actual game. So I set out in search of something to serve as a starting point, and I found this **amazing** tutorial by Bardent: [see the full playlist](https://youtube.com/playlist?list=PLy78FINcVmjA0zDBhLuLNL1Jo6xNMMq-W) (note that the relevant videos start at part 20). So, while the videos do an excellent job at explaining everything, I might as well explain it myself.
@@ -190,7 +190,7 @@ This particular system has five main components:
         <item>
             <link>https://levimcgomes.github.io/blog/metroidvania_devlog3</link>
             <guid>https://levimcgomes.github.io/blog/metroidvania_devlog3</guid>
-            <pubDate>Thu, 02 Mar 2023 00:00:00 GMT</pubDate>
+            <pubDate>Fri, 03 Feb 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[How do I come up with the story for my game? What even is a game's story?]]></description>
             <content:encoded><![CDATA[
 ## Story-driven vs. Gameplay-driven
@@ -237,7 +237,7 @@ I believe a story isn't one thing, but instead a collection of things. Think of 
         <item>
             <link>https://levimcgomes.github.io/blog/metroidvania_devlog4</link>
             <guid>https://levimcgomes.github.io/blog/metroidvania_devlog4</guid>
-            <pubDate>Invalid Date</pubDate>
+            <pubDate>Fri, 17 Feb 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Come with me to take a look at how well crafted characters can massively improve a game.]]></description>
             <content:encoded><![CDATA[
 In this post, we'll pick up where we left of in the last one. As a reminder, this was the list of elements that make a story I presented:
@@ -295,7 +295,7 @@ Furthermore, every ``State`` and ``Transition`` has to its availability a set of
         <item>
             <link>https://levimcgomes.github.io/blog/physics_sim0</link>
             <guid>https://levimcgomes.github.io/blog/physics_sim0</guid>
-            <pubDate>Invalid Date</pubDate>
+            <pubDate>Fri, 31 Mar 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[We'll start working on a physics engine to explore the wonderfull world of dynamics and mechanics!]]></description>
             <content:encoded><![CDATA[
 For the last few months, I've been writing almost exclusively about my game. I'm still working on it, and I'll be posting more devlogs, but I also want to write about other stuff. So this will be the first in a series of tutorials about making a physics engine from scratch with C#. Why? Because I like physics. So without further ado, let's get started.
@@ -444,7 +444,7 @@ And this concludes what we could call the frontend of this app. Before we start 
         <item>
             <link>https://levimcgomes.github.io/blog/physics_sim1</link>
             <guid>https://levimcgomes.github.io/blog/physics_sim1</guid>
-            <pubDate>Invalid Date</pubDate>
+            <pubDate>Fri, 14 Apr 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[We'll review the maths needed to simulate physically accurate movement.]]></description>
             <content:encoded><![CDATA[
 In the last post, we set up a simple Raylib application to allow us to view the simulation we were going to make. Today, let's look at all the maths and physics needed to make said simulation. Without further ado, let's get started!
@@ -576,7 +576,7 @@ That was a lot to take in. If you didn't fully understand the maths involved, yo
         <item>
             <link>https://levimcgomes.github.io/blog/ptsdc</link>
             <guid>https://levimcgomes.github.io/blog/ptsdc</guid>
-            <pubDate>Invalid Date</pubDate>
+            <pubDate>Fri, 17 Mar 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[Two weeks ago, I participated in PTSDC. This post is somewhat of a reflection on what I did there]]></description>
             <content:encoded><![CDATA[
 A few weeks ago, the head of my school's science club reached out to all the members, inviting us to join the PTSDC. Although it isn't closely related to my interests, I decided to join in. Now, after-the-fact, I'm glad I chose to participate, because it was at the same time one of the most fun and most stressing days I ever had.
