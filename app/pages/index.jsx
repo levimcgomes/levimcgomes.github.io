@@ -6,7 +6,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Post from '../components/Post'
 import ClientOnly from '../components/ClientOnly'
-import {sortByDate} from '../utils'
+import { sortByDate } from '../utils'
+import generateRssFeed from '../utils/rss.jsx'
 
 export default function Home({ posts }) {
     return (
@@ -45,6 +46,8 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
+    generateRssFeed()
+
     //Get files from posts dir
     const files = glob.sync('/**/*.md', { root: path.join(process.cwd(), 'posts') })
 

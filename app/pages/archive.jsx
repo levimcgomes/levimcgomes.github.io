@@ -20,7 +20,7 @@ export default function Archive({ posts }) {
 
 export async function getStaticProps() {
     //Get files from posts dir
-    const files = glob.sync('/**/*.md', { root: path.join(process.cwd(), 'posts')})
+    const files = glob.sync('/**/*.md', { root: path.join(process.cwd(), 'posts') })
 
     //Get slug and frontmatter from posts
     const posts = files.map(filename => {
@@ -29,7 +29,7 @@ export async function getStaticProps() {
             filename.replace('.md', '').replace(process.cwd(), '').replace('/posts', '').replace('/', '').replaceAll('/', '_')
 
         //Get frontmatter
-        const markdownWithMeta = fs.readFileSync(path.join(filename), 'utf8')//'posts', 
+        const markdownWithMeta = fs.readFileSync(path.join(filename), 'utf8')
 
         const { data: frontmatter } = matter(markdownWithMeta)
 

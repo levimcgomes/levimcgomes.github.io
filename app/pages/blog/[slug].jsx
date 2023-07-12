@@ -38,11 +38,13 @@ const md = new MarkdownIt({
 	    return `<pre class="hljs"><code>${code}</code></pre>`;
 
 }
-}).use(tm, {
+})
+    .use(tm, {
     engine: katex,
     delimiters: ['dollars', 'beg-end'],
     katexOptions: { macros: { "\\RR": "\\mathbb{R}" } }
-}).use(cont, 'media', {
+    })
+    .use(cont, 'media', {
     marker: '&',
     validate: function (params) {
         return params.trim().match(/(.*)\[(.*)\]\((.*)\)(.*)/);
@@ -65,7 +67,8 @@ const md = new MarkdownIt({
             </figure > `;
         //return `<div>${path}:::${label}:::${caption}:::${tokens[idx].info.trim()}:::${/\[(.*)\]\((.*)\)(.*)/}</div>`
     }
-}).use(cont, 'quote', {
+    })
+    .use(cont, 'quote', {
     marker: '@',
     validate: function (params) {
         return true;
