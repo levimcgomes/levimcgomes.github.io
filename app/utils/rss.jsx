@@ -25,12 +25,13 @@ export default function generateRssFeed() {
     const feed = new Feed(feedOptions);
 
     allPosts.forEach((post) => {
+        var separatedDate = post.frontmatter.date.split("/")
         feed.addItem({
             title: post.title,
             id: `${site_url}/blog/${post.slug}`,
             link: `${site_url}/blog/${post.slug}`,
             description: post.frontmatter.excerpt,
-            date: new Date(post.frontmatter.date),
+            date: new Date(parseInt(separatedDate[2]), parseInt(separatedDate[1]) - 1, parseInt(separatedDate[0])),
             content: post.content
         });
     });
