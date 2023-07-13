@@ -88,7 +88,7 @@ import Head from 'next/head'
 import NewsletterSignupPost from '../../components/NewsletterSignupPost'
 
 export default function PostPage({
-    frontmatter: { title, date, cover_image, tags },
+    frontmatter: { title, date, cover_image, tags, excerpt },
     slug,
     content,
 }) {
@@ -96,6 +96,7 @@ export default function PostPage({
         <>
             <Head>
                 <title>{title} | How I Made A Game</title>
+                <meta name="description" content={excerpt}/>
                 <script id="giscus-script" src="https://giscus.app/client.js"
                     data-repo="levimcgomes/levimcgomes.github.io"
                     data-repo-id="R_kgDOH_rqaA"
