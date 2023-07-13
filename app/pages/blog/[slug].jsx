@@ -85,6 +85,7 @@ import 'katex/dist/katex.css'
 import 'markdown-it-texmath/css/texmath.css'
 import Link from 'next/link'
 import Head from 'next/head'
+import NewsletterSignupPost from '../../components/NewsletterSignupPost'
 
 export default function PostPage({
     frontmatter: { title, date, cover_image, tags },
@@ -128,6 +129,7 @@ export default function PostPage({
                     </div>
                 </div>
             </div>
+            <NewsletterSignupPost></NewsletterSignupPost>
             <div className='giscus'></div>
         </>
     )

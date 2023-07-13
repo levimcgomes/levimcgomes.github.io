@@ -6,12 +6,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Post from '../components/Post'
 import ClientOnly from '../components/ClientOnly'
+import NewsletterSignup from '../components/NewsletterSignup'
 import { sortByDate } from '../utils'
 import generateRssFeed from '../utils/rss.jsx'
 
 export default function Home({ posts }) {
     return (
         <div>
+            <NewsletterSignup></NewsletterSignup>
             <Head>
                 <title>How I Made A Game</title>
             </Head>
