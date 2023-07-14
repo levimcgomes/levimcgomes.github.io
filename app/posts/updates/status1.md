@@ -10,7 +10,7 @@ My last post was three months ago. So, where have I been? In short, I was very b
 
 In May and June, I had to focus most of my time on studying, so I didn't have much time to work on anything related to programming. But now it's my summer break, so I have a lot more free time. That means I'll be getting back to my usual schedule of posting every other Friday. But since I'm already talking about the current state of this blog, I might as well take this chance to tell you about my plans for the future.
 
-Firstly, this post isn't coming alone! This Saturday, I'll be posting about the GMTK Game Jam, so keep your eyes peeled! After that, I intend to get back to working on my game, so the devlogs will definitely be coming back.
+Firstly, this post isn't coming alone! On Monday, I'll be posting about the GMTK Game Jam, so keep your eyes peeled! After that, I intend to get back to working on my game, so the devlogs will definitely be coming back.
 
 As for the physics simulation tutorials, while I definitely want to continue that project, I'm not sure if it'll be coming back so soon. However, let me now what you think in the comments section - should I just focus on the devlogs, or should I continue the physics series as well? (If you don't see the comments section at the bottom of the post, reload the page and it should appear - I'm not sure what's causing that, but I'll fix it someday!)
 
