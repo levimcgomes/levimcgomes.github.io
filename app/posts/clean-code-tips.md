@@ -2,7 +2,7 @@
 title: "Tips On Writing Clean and Maintainable Code"
 date: "28/7/2023"
 cover_image: "images/posts/clean-code_cover.png"
-tags: ["update"]
+tags: ["coding","tips","C#"]
 excerpt: "Ever found yourself going back to a project and not understanding your own code? By following some simple design principles, your code will be easier to understand, both for yourself and others."
 ---
 
