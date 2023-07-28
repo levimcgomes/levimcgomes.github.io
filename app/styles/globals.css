@@ -335,10 +335,14 @@ blockquote {
     padding-left: 5px;
     transition: background ease-in-out .1s,
                 border-left ease-in-out .1s;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 .post-body blockquote p {
     text-indent: 0px;
+    margin: 0px;
 }
 
 code {
