@@ -4,7 +4,7 @@
         <title>Blog posts | RSS Feed</title>
         <link>https://levimcgomes.github.io</link>
         <description>A blog about game development and much more!</description>
-        <lastBuildDate>Fri, 08 Sep 2023 10:43:03 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 08 Sep 2023 10:53:08 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -62,6 +62,9 @@ So, why isn't this technique applied to other specialised tasks - like audio pro
 Cmajor was created with the intent of being run on specialised units when they're available. You might be surprised to learn that most devices have these specialised units. They're called DSPs and are made for audio processing. However, unlike GPUs, most drivers don't allow programmers to run their own code on them, meaning they're hardly used. Cmajor's creators want to change this, and offset audio processing from the CPU to the DSP. Of course, this will require driver support, which will take a long time.
 
 >**Disclaimer**: technically speaking, this is speculation. What I describe here were the known goals of the creators of SOUL. It just so happens that the creators of SOUL are the creators of Cmajor, and the two languages look almost exactly the same. So, I think it's safe to say that the goals of SOUL and of Cmajor are also pretty similar. But don't take my word for it - there's no promise from the Cmajor team that this will ever be a reality. (On a side note, I couldn't really find out why SOUL was abandoned and then Cmajor was created, but if you know anything about this, I'd be really interested in hearing, so share your thoughts in the comments!)
+
+## Easy UI
+Another of Cmajor's strengths is the way it implements custom UIs. Instead of fiddling with hard C++ UI implementations, you create UIs with a language that was actually made for UIs - good old HTML and CSS. Of course, this means you can also use any frontend framework you like, like React, Angular, Vue or Svelte. This makes it super easy to create elegant, polished and functional UIs for your plugins.
 
 ## Conclusion
 I sure think that Cmajor is pretty amazing, and I hope by now you agree with me. However, it doesn't get nearly as much attention as it deserves, which is a shame. Anyhow, let me know what you think in the comments, I'd really like to see some other points of view!
