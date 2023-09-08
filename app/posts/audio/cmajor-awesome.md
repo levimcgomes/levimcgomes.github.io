@@ -50,6 +50,9 @@ Cmajor was created with the intent of being run on specialised units when they'r
 
 >**Disclaimer**: technically speaking, this is speculation. What I describe here were the known goals of the creators of SOUL. It just so happens that the creators of SOUL are the creators of Cmajor, and the two languages look almost exactly the same. So, I think it's safe to say that the goals of SOUL and of Cmajor are also pretty similar. But don't take my word for it - there's no promise from the Cmajor team that this will ever be a reality. (On a side note, I couldn't really find out why SOUL was abandoned and then Cmajor was created, but if you know anything about this, I'd be really interested in hearing, so share your thoughts in the comments!)
 
+## Easy UI
+Another of Cmajor's strengths is the way it implements custom UIs. Instead of fiddling with hard C++ UI implementations, you create UIs with a language that was actually made for UIs - good old HTML and CSS. Of course, this means you can also use any frontend framework you like, like React, Angular, Vue or Svelte. This makes it super easy to create elegant, polished and functional UIs for your plugins.
+
 ## Conclusion
 I sure think that Cmajor is pretty amazing, and I hope by now you agree with me. However, it doesn't get nearly as much attention as it deserves, which is a shame. Anyhow, let me know what you think in the comments, I'd really like to see some other points of view!
 
