@@ -11,6 +11,7 @@
 
 <h1>How I Made A Game</h1>
 <h2>Recent Posts</h2>
+<PostList postList={data.posts} />
 <h2 id="about">About</h2>
 <p>
 	So, what's this all <em>about</em>? It's about how I made a game. Sometimes. Really, it's about
