@@ -5,5 +5,14 @@
 </script>
 
 <div>
-	{post.content}
+	{post.title}
+	<br />
+	{post.date}
+	<br />
+	{post.path}
+	<br />
+	{post.tags}
+	<br />
+	{post.excerpt}
+	<hr />
 </div>

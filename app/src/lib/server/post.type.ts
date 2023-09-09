@@ -1,3 +1,8 @@
 export type Post = {
-	content: string;
+	path: string;
+	title: string;
+	date: Date;
+	cover_image: string;
+	tags: string[];
+	excerpt: string;
 };
