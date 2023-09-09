@@ -1,8 +1,8 @@
 ---
-title: "A new project: GuitarChain"
-date: "22/9/2023"
-cover_image: "images/posts/audio/guitar-chain_cover.png"
-tags: ["audio","guitar"]
+title: 'A new project: GuitarChain'
+date: '22/9/2023'
+cover_image: 'images/posts/audio/guitar-chain_cover.png'
+tags: ['audio', 'guitar']
 excerpt: "I've started a new project!"
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: "Blog Status Update"
-date: "14/7/2023"
-cover_image: "images/posts/status1_cover.png"
-tags: ["update"]
+title: 'Blog Status Update'
+date: '14/7/2023'
+cover_image: 'images/posts/status1_cover.png'
+tags: ['update']
 excerpt: "This blog hasn't seen a new post in a few months. Find out why, and also where I'm taking this blog from now on."
 ---
 
