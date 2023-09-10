@@ -12,12 +12,12 @@ export function getPostList(): Post[] {
 	// sub folders
 	const postPaths = glob.sync('./src/posts/**/*.md');
 
-	const posts = postPaths.map(postFromPath);
+	const posts = postPaths.map((path) => postFromPath(path));
 
 	return sortPostsByDate(posts);
 }
 
-export function postFromPath(path: string) {
+export function postFromPath(path: string, getContent = false) {
 	const file = fs.readFileSync(path);
 
 	const parsed = matter(file);
@@ -25,14 +25,26 @@ export function postFromPath(path: string) {
 	// bout ours is European style, so we need to do some juggling
 	const splitDate = (parsed.data['date'] as string).split('/');
 	const date = new Date(splitDate[2] + '/' + splitDate[1] + '/' + splitDate[0]);
-	return {
-		path: path,
-		title: parsed.data['title'] as string,
-		date: date,
-		cover_image: parsed.data['cover_image'] as string,
-		tags: parsed.data['tags'] as string[],
-		excerpt: parsed.data['excerpt'] as string
-	} as Post;
+	if (getContent) {
+		return {
+			path: path,
+			title: parsed.data['title'] as string,
+			date: date,
+			cover_image: parsed.data['cover_image'] as string,
+			tags: parsed.data['tags'] as string[],
+			excerpt: parsed.data['excerpt'] as string,
+			content: parsed.content
+		} as Post;
+	} else {
+		return {
+			path: path,
+			title: parsed.data['title'] as string,
+			date: date,
+			cover_image: parsed.data['cover_image'] as string,
+			tags: parsed.data['tags'] as string[],
+			excerpt: parsed.data['excerpt'] as string
+		} as Post;
+	}
 }
 
 function sortPostsByDate(posts: Post[]): Post[] {

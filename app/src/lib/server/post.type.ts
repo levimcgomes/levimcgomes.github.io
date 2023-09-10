@@ -5,4 +5,5 @@ export type Post = {
 	cover_image: string;
 	tags: string[];
 	excerpt: string;
+	content: string | never;
 };
