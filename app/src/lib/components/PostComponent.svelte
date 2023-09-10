@@ -14,5 +14,7 @@
 	{post.tags}
 	<br />
 	{post.excerpt}
+	<br />
+	<a href={'/blog' + post.path.slice(11).slice(0, -3)}>read</a>
 	<hr />
 </div>
