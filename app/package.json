@@ -16,11 +16,19 @@
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.20.4",
 		"@types/glob": "^8.1.0",
+		"@types/katex": "^0.16.2",
+		"@types/markdown-it": "^13.0.1",
+		"@types/markdown-it-container": "^2.0.6",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
+		"gray-matter": "^4.0.3",
+		"katex": "^0.16.8",
+		"markdown-it": "^13.0.1",
+		"markdown-it-container": "^3.0.0",
+		"markdown-it-texmath": "^1.0.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
 		"svelte": "^4.0.5",
@@ -31,7 +39,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"gray-matter": "^4.0.3",
-		"markdown-it": "^13.0.1"
+		"highlight.js": "^11.8.0"
 	}
 }

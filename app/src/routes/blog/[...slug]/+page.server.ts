@@ -1,24 +1,27 @@
+import { postFromPath } from '$lib/server/post';
 import type { Post } from '$lib/server/post.type';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { postFromPath } from '$lib/server/post';
 // File interfacing
-import fs from 'fs';
+import markdown from '$lib/server/markdown';
 
 export const load = (({ params }) => {
+	const path = './src/posts/' + params.slug + '.md';
 	let post: Post;
+	let html: string;
 	try {
-		post = postFromPath('./src/posts/' + params.slug + '.md');
+		post = postFromPath(path, true);
+		html = markdown(post.content);
 	} catch (e) {
 		throw error(404, {
 			message: 'Post not found!',
-			path: fs.realpathSync('./src/posts/' + params.slug + '.md'),
+			path: path,
 			pwd: process.cwd()
 		});
 	}
 
 	return {
 		post: post,
-		innerHTML: params.slug
+		innerHTML: html
 	};
 }) satisfies PageServerLoad;
