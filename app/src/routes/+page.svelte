@@ -35,6 +35,6 @@
 	that these were made for personal use, so they're very low quality tools; however, I do think they're
 	useful)
 	<ul>
-		<li><a href="/hidden/color">Color Palette Helper</a></li>
+		<!--<li><a href="/hidden/color">Color Palette Helper</a></li>-->
 	</ul>
 </div>
