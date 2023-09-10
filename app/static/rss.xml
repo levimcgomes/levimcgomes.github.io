@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Blog posts | RSS Feed</title>
+        <link>localhost:3000</link>
+        <description>A blog about game development and much more!</description>
+        <lastBuildDate>Fri, 28 Jul 2023 12:32:55 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>Blog posts | RSS Feed</title>
+            <url>localhost:3000/android-chrome-256x256.png</url>
+            <link>localhost:3000</link>
+        </image>
+        <copyright>All rights reserved 2023, levimcgomes</copyright>
+        <item>
+            <link>localhost:3000/blog/clean-code-tips</link>
+            <guid>localhost:3000/blog/clean-code-tips</guid>
+            <pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate>
+            <description><![CDATA[Ever found yourself going back to a project and not understanding your own code? By following some simple design principles, your code will be easier to understand, both for yourself and others.]]></description>
+            <content:encoded><![CDATA[
+If you've read my [recent update](https://levimcgomes.github.io/blog/updates_status1) about this blog, you'll know I've recently gotten back to working on my metroidvania game. One of the issues I've faced is that most of my code doesn't really make sense anymore, and I'm often left staring at a script and trying to figure out what it was meant for. While this is a pretty common issue when returning to a project, it doesn't - and shouldn't - have to be this way. By writing clean code, and following good design patterns, you're doing a favour to yourself (and to others, if you're working in a team), as your code will be much easier to understand. So, I'd like to share some tips I've both from this project and others to help you write more mantainable code. Without further ado, let's get started!
+
+> **Note**: in these tips, I try to be as language- and paradigm-agnostic as possible, but some tips will be specifically about OOP, since that's the paradigm I'm using to make my game. Further on, all code examples will be in C#, since it's the language I know the best, but they should still apply to whatever language you use.
+
+## 1. Be thoughtful when naming things
+This should go without saying, but giving clear names to variables, functions, classes and other symbols is really important. Take the following example (as a side note, this code likely isn't very realistic, but it illustrates the point):
+
+```cs
+DB GetDB(string accTok, string url){
+	try{
+		var db = HTTPWrapper.Conn(accTok, url)
+		return db.rd();
+	}
+	catch(Exception e){
+		ExcHandler.Handle(e);
+	}
+}
+```
+
+You might think you'll remember what everything means, but most likely you won't - so give things names that clearly explain what they are. Looking at this code, can you tell what exactly it's doing? I just wrote it, and I'm not quite sure what it does. Here are some of the things wrong with this code:
+ - What exactly is ``DB``? ``DB`` usually stands for "database", but it might mean something else.
+ - What's ``accTok``? Once again, from context, we can assume it means "access token", but a clearer name wouldn't hurt.
+ - Is ``db`` the database? Or is it something else? We are making a call to ``HTTP.Conn`` - what's that? Looking at this code, ``Conn`` most likely means "connection" - we can assume that because we're receiving a URL and using HTTP, but in other contexts, it could be less clear. Since we're making a connection, ``db`` holds that connection. But its name is misleading, and one could easily assume it holds the actual database (``var`` doesn't help either, but we'll talk about that later). Further on, what does ``rd`` do? What does it stand for? With this context, it's almost impossible to guess what it is.
+ - From context, it's pretty clear ``ExcHandler`` stands for "exception handler", but writing it out fully would be better.
+
+ Given this, one might refactor this code as follows:
+
+ ```cs
+Databas GetDatabase(string accessToken, string url){
+	try{
+		var databaseServer = HTTPWrapper.Connect(url, accessToken)
+		return databaseServer.read();
+	}
+	catch(Exception e){
+		ExceptionHandler.Handle(e);
+	}
+}
+```
+
+I hope you'll agree that this code is much easier to understand.]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/gmtk2023</link>
+            <guid>localhost:3000/blog/gmtk2023</guid>
+            <pubDate>Mon, 17 Jul 2023 23:00:00 GMT</pubDate>
+            <description><![CDATA[In this post I'll be sharing my experience participating in this year's GMTK Game Jam]]></description>
+            <content:encoded><![CDATA[
+In case you don't know, the GMTK Game Jam is an annual event hosted by Mark Brown from [Game Maker's Toolkit](https://youtube.com/@gmtk), challenging game developers all around the world to create a game in just 48 hours! So let's take a look at how it went for me!
+
+## Before the jam
+I have partaken in a fair share of game jams, but this time around, I decided I wanted to do something new. Specifically, I wanted to team up with other people. So, I headed to amazing team finder website the community put together for this jam, perhaps a bit too close to the start of the jam. I started skimming through the posts, looking mainly for someone who could do art assets, as that's something I really couldn't do. Messages were sent, and the start of the jam was drawing nearer. None of the artists I contacted replied, so I ended up in a team composed of me and just another programmer. Now all we could do was eagerly await the announcement of the theme.
+
+## During the jam
+### The First Day
+This year's theme was set to be announced at 18:00 BST, on Friday 7th. So, by that time, I tuned in to the video on YouTube. The chosen theme was **Roles Reversed**. Because of time limitations on my side, me and my teammate had only a single hour on this first day, so we decided to use it for brainstorming and settling on an idea we both like. So, we hoped on to a Google Docs and started writing down ideas. We ended up deciding to make "a puzzle game, where the player's character is an actor way too focused in playing his role to perfection, so much so that he starts *becoming* his role" (actually, that isn't *exactly* our initial idea - throughout the jam we changed it a bit to better fit the theme). Although it needed some more fleshing out, it was a pretty nice concept. While I had to stop here, my teammate started setting up a Unity project and found a nice player controller.
+
+### The Second Day
+Now that we had an idea, it was time to start coding. Since we already had a player controller in place, we jumped straight into implementing the role swapping mechanic, which was simple enough. We just had to detect a button press and react to it by changing a parameter in the player controller (looking back, all of this functionality should have been in a separate script, but this kind of bad practice is generally acceptable in a game jam). After a few tweaks, including limiting the number of times the player can change in and out of role, to bump the difficulty slightly up, we started drafting an introduction level to teach the player the game mechanics. In trying to design the level, we realised we really needed some interesting puzzle elements. So, we started working on *special surfaces* that would damage the player only if he was out-of-role, or only if he was in-role (later, we actually discarded this feature in favour of enemies). The next puzzle element was a simple door and button mechanic, but which turned out really nice. Meanwhile, we also started working on simple attack logic for the player to deal with his (yet to implement) foes. We got back to working on the introduction level, adding a door and a few enemies, as well as some text to tell the player what to do. And with all this, we were nearing the end of the day. We'd both been doing different tasks, on our own branches. So, we decided to merge everything before calling it a day. Thankfully there weren't too many conflicts, so it wasn't very hard to do.
+
+### The Last Day
+For us, the last day started with just 8 hours to go. We still had only one level, and that was our biggest concern. But we still had many features to implement and ideas were scarce, so we kept postponing making levels again and again, which was probably our worst mistake during this jam. Also, we had no artist, and everything was still looking very much like a prototype. So, we started pumping out scripts at an amazing pace. Enemy controller, check; a trigger to go to the next level, check; sanity counter (more on that later), check. By this time, an idea hit and we finally started making a new level, which turned out quite interesting, and definitely leaned more on the puzzle aspect we were looking for. But in doing it we realized we needed something more to make the game interesting. That's when we thought about sanity. Going back to our concept, the player character is an actor playing a role, and slowly becoming that role, getting trapped deeper and deeper in his madness. So, it makes sense that the more time he spends playing his role, the less sane he becomes. With this new idea, we implemented a simple timer that'd tick down while the in-role. After another round of merging, with approximately two hours to go before the end of the jam, we started making a build and uploading it to itch.io. Building took a lot of time though, so we ended up with one hour left, and a heap of bugs! We started fixing them as we found them, and also trying to do something about the graphics. We decided to stick with the programmer art we already had in place, but we added some post processing and a nice effect linked to losing sanity (I really think that effect turned out great, and others who've played the game seem to think the same, so, graphically, it might have been what saved the game). We also found a nice song and added some distortion that creeps in when the player's sanity gets low, which really adds a lot to the atmosphere. We also added an ending scene after the last level (which was still the second one, we hadn't made more in the meantime, unfortunately). We fixed the last round of bugs, pushed everything and started making a fresh build. We were getting *really* close to the submission deadline, and the build was taking forever. The pressure was building up and for a moment I feared we'd miss the time. But, just as the counter was ticking down close to zero, I got a notification from Discord.
+&&&img[images/posts/gmtk2023_deadline.png](The message) sent on the GMTK Discord announcing the extension of the deadline 
+&&&
+Turns out itch's servers were under a lot of stress, and many people were having a hard time publishing their game, so the jam was extended by one hour. However, during this period we could only fix bugs and upload to itch (which means no new levels). So, we got to work fixing some pretty bad bugs, and we uploaded a build to itch. We still had some issues with the resolution, but we managed to fix them and uploaded the final version about 10 minutes before the deadline. Then, just for fun, we decided to speedrun the game. I managed to get 36.81 seconds (at the time of writing, I've managed to get it to 20.89), but my teammate got an amazing 14.67 seconds!
+
+## Final thoughts
+In my view, there are two purposes to game jams, those being having fun and learning some new things. I feel I've accomplished both of those, so I'm already pretty satisfied with the result. As for the actual result - that is, how well our game placed overall - we ranked 4810 out of 6842, which ins't too bad at all. So, I'll let you know in a comment as soon as it's announced. Further on, it was much more fun working with someone else than alone, so that's surely something I want to repeat. That being said, I hope you've liked the post, and till the next one, goodbye!
+]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/metroidvania_devlog0</link>
+            <guid>localhost:3000/blog/metroidvania_devlog0</guid>
+            <pubDate>Sat, 24 Dec 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[The first in a series of devlogs about a metroidvania game]]></description>
+            <content:encoded><![CDATA[
+As the title suggests, this is the first (the zero-th?) in a series of devlogs about a metroidvania game. In other words, I'm making a [metroidvania](https://en.wikipedia.org/wiki/Metroidvania), and I'm going to write about it, trying my best to explain how I'm making things happen the right way, so that, hopefully, you'll get some understanding of how I made this game. This post will serve as an introduction, telling you many random things that are probably nice to know. So, without further ado, let's see what this is all about.
+> **Disclaimer:** Although I claim this is a programming blog, you're not very likely to see code in my devlogs, at least for this game. The reason for that is that this game is closed-source. I'll describe how I did *things*, but implementing those *things* is left as an exercise for the reader.
+
+## What tools am I using?
+When making a game, one seldom makes everything from scratch (and one who actually does would be much more skilled than myself). That said, what am I using to help me make this game then? The truth is that I don't know yet all I'm going to use. But I do know some things, so I'll talk about those.
+
+### Unity
+[Unity](https://unity.com/) is a versatile, simple to use and powerful game engine. It's what I've been using since the start (which isn't that much time - a measly one and a half years), and it's what I know and feel comfortable using. It's also better for 2D games than most other engines, which is a big plus. Don't be fooled for all that praising, however, for even though very good, it has still a lot of quirks and unattractive aspects. So, all things considered, it is a good choice, but can sometimes be a massive headache.
+
+### Mirror
+[Mirror](https://mirror-networking.com/) is a networking solution for Unity. Simple, but insanely good. It's what I'll be using for dealing with all things networking (well, almost all).
+
+### Discord GameSDK
+Yes, [that's a thing](https://discord.com/developers/docs/game-sdk/sdk-starter-guide). Because who wants to create yet another account just to play a game with their friends? And who wants to manage those accounts? Who wants to handle their own lobbies and peer to peer connections? No one. That's why Discord offers a GameSDK which (get ready):
+ - manages achievements
+ - integrates with Discord Rich Presence (Activities)
+ - integrates with Discord voice chat
+ - retrieves Discord avatars
+ - manages lobbies
+ - does networking
+ - retrieves friends
+ - manages file storage
+ - manages IAP
+ - retrieves user data
+ - and much more...
+
+ Very wholesome if you ask me.
+
+ ### Visual Studio
+ Visual Studio is my IDE of choice. Not much to say here, probably this isn't even relevant, but it's here anyway.
+
+ ###
+ And that's about it for now. However, I didn't decide for these tools, particularly the ones related to networking, at first try. So, keep your eyes peeled for the next post, where I'll talk about all the options I considered for the networking solution.
+
+ ## What is this game?
+ A cooperative multiplayer metroidvania. That's a bit of a short description, but it's all I'll say. If you want to know more, you'll have to play the game. I'm not here to tell you the whole story of the game.
+
+ ## What about art?
+ In case you didn't understand from the tools section, I'm a programmer. I'm not an artist. That's why I'm not alone. I'm working with two other guys to make this game: an artist, and a... gameplay/storytelling designer? That's the best description I can come up with. Basically he just listens to my ideas and contributes with some more ideas.
+
+ ## Conclusion
+ This would probably be the part where I ask you to subscribe to my newsletter to stay up to date with this blog, but I don't have one. So, I hope you enjoyed reading this, hopefully enough to come back for more, and I guess I'll see you on the next post. Or maybe talk to you. I'm not really seeing you, am I? Until then, have a merry Christmas!]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/metroidvania_devlog1</link>
+            <guid>localhost:3000/blog/metroidvania_devlog1</guid>
+            <pubDate>Fri, 06 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[As I mentioned in the last post, choosing the networking solution was quite a arduous task. So let's take a look at all the options I considered.]]></description>
+            <content:encoded><![CDATA[
+As I mentioned in the last post, choosing the networking solution was quite an arduous task. So let's take a look at all the options I considered.
+
+### Steam
+Steam seems like the obvious one. I mean, who doesn't play Steam games, am I right? They provide the Steamworks SDK, which smoothly deals with networking so you don't have to. However, there's a massive catch. It only works if you publish your game on Steam, and Steam only. "Alright, not that big of a deal, just publish on Steam" is what one might na&#239;vely say. Why na&#239;vely? Did you know that they charge 100$ to publish a game? Yes, you read that right. Yes, it's way too much. Yes, people do publish games on Steam anyway. And no, I don't have 100$ to spend, Steam. So that one's off the table.
+
+### Netcode for GameObjects
+The next idea that crossed my mind was to try whatever Unity offered for multiplayer. Turns out, they have Netcode for GameObjects (NGO), a high level multiplayer solution made just for GameObjects. It seemed pretty good, so I watched some [tutorials](https://www.youtube.com/playlist?list=PLQMQNmwN3FvyyeI1-bDcBPmZiSaDMbFTi) (this playlist by Dilmer Valecillos is really good), but soon I realized something: NATs and routers are a thing. And, from a game programmer's perspective, they serve the single purpose of making things hard (but only from a game programmer's perspective - those things are very important). Don't worry, I thought, I'm sure Unity can do NAT punchthrough. It can't. Don't worry, I'm sure someone has made something to do NAT punchthrough in NGO. No one did. This means I�d need relays, but those things are paid (mostly). So, I started digging around.
+
+### Epic Online Services
+In my seemingly endless search I stumbled upon Epic Online Services (EOS). A free-to-use engine and shop agnostic networking layer with all the modern commodities such as:
+ - authentication (Epic Account Services)
+ - lobbies
+ - free relays
+
+ All this based on the infrastructure they used for Fortnite. It sounds almost too good to be true. Well, it was, in its own way. I couldn't even get their samples to work (which was probably my bad, but if I'm not skilled enough to make a sample work I'm not skilled enough to use it), and integrating it with Unity looked like it was going to be a lot of work. Another one bites the dust.
+
+ ### Mirror
+ Finally, I found [Mirror](https://mirror-networking.gitbook.io/docs/). I could start to see the light at the end of the tunnel. Mirror provides a high-level API integrating directly with Unity, based off Unity's UNet. And let me tell you, Mirror is straight up amazing. It uses a lower-level system, Transports, to actually handle network connections and messaging. And Transports are fully modular, so I just needed to find the right transport for my needs, and I'd be all set. So, how hard could be finding a transport be? Mirror's [documentation page](https://mirror-networking.gitbook.io/docs/transports) about transports says the following:
+
+
+ - **Built-in Transports - These transports are included with Mirror.**
+    - **KCP** - UDP transport based on kcp.c, line-by-line translation to C#
+	- **Telepathy** - Simple, message based, MMO Scale TCP networking in C#. And no magic.
+    - **Simple Web Sockets** - WebGL transport layer for Mirror that target browser clients.
+    - **Multiplexer** - Bridging transport to allow a server to handle clients on different transports concurrently, for example desktop clients using Telepathy together with WebGL clients using Websockets.
+    - **Latency Simulation** - Middleman transport to test non-ideal network conditions
+ - **Additional Transports - These transports are maintained by third parties outside of Mirror.**
+    - **Monke** - plug and play encrypted middleman transport layer for mirror.
+    - **Ignorance** - reliable and unreliable sequenced UDP transport based on ENet.
+    - **LiteNetLibTransport** - UDP transport based on LiteNetLib.
+ - **Relay Transports** - These transports are maintained by third parties and use relay infrastructure to connect clients to servers behind firewalls / NAT.
+    - **Steam - FizzySteamworks** - Transport utilizing Steam P2P network, building on Steamworks.NET.
+    - **Steam - FizzyFacepunch** - Transport utilizing Steam P2P network, building on Facepunch.Steamworks.
+    - **Epic** - Epic Online Services - Relay transport utilizing Epic's free relay service.
+    - **LRM** - Light Reflective Mirror - Relay transport for WebGL clients.
+    - **OculusP2P** - Oculus Platform - Relay Transport for Oculus Quest 1 & 2.
+
+The 'Relay Transports' section should have plenty to pick from. However, it has two Steam transports, one Epic transport, one transport for WebGL and one for Oculus Quest. Nothing good for me.
+
+### Discord GameSDK
+I honestly thought this was it. Discord GameSDK is (as of now) a very good tool. It manages accounts for me, creates lobbies and connects players to them. And integrating it with Mirror was certainly possible. It had been done. Although [DiscordMirror](https://github.com/Derek-R-S/Discord-Mirror) was outdated and didn't work in the best of ways, it was a proof of concept. So I got working, trying to make a transport for Mirror using Discord GameSDK. That was when I read this message on Discord GameSDK's official Discord server:
+&&&img[images/posts/metroidvania/DiscordGameSDK_feature_remmoval.png]()The message.
+&&&
+They are removing more than half of the SDK's features in five months. I truly don't know how they think this is a good idea, but it means I can't use it.
+
+### Back to the future... I mean, to EOS
+After getting very mad at Discord, for what they did, I figured I'd better find something else. So I gave EOS another chance. There's a transport made for it already, so it won't be nearly as hard. It has a whole new cast of problems, but I can (hopefully) figure it out. For instance, authentication is quite the headache. That's to say, I'm not over with networking yet, which means you'll be seeing more posts about it, but after all this I needed a break.
+
+###
+The next post was going to be about how I made a transport using Discord GameSDK, but that'd be useless now. The next post will instead be about **the actual game**! You never thought you'd see this day coming, did you? Next time we'll delve deep into the workings of the character controller, so I hope you'll be here to read it. Until then, stay well and goodbye!]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/metroidvania_devlog2</link>
+            <guid>localhost:3000/blog/metroidvania_devlog2</guid>
+            <pubDate>Fri, 20 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[In this post, we delve deep into the implementation of a Player Controller]]></description>
+            <content:encoded><![CDATA[
+Being quite tired of dealing with networking and multiplayer, I decided to start implementing the actual game. So I set out in search of something to serve as a starting point, and I found this **amazing** tutorial by Bardent: [see the full playlist](https://youtube.com/playlist?list=PLy78FINcVmjA0zDBhLuLNL1Jo6xNMMq-W) (note that the relevant videos start at part 20). So, while the videos do an excellent job at explaining everything, I might as well explain it myself.
+>**Disclaimer:** I'm not in any way trying to steal Bardent's content. Instead, I'm trying to explain how I started making the player controller.
+
+## The state machine
+All the geniality of this player controller comes from its core idea: a state machine. For those of you that don't know, I'll try my best to explain what a state machine is.
+
+Think of a collection of data, and a way to perform an action acknowledging that data (quite similar to what a class is in OOP). That is a state. If you have a collection of different states, which transition between them, you have a state machine.
+
+This particular system has five main components:
+ - the ``Player`` script, which has various functionalities
+ - the ``PlayerStateMachine`` script, which updates states, and deals with transitions
+ - the ``PlayerState`` abstract class, which serves as a base for other states
+ - the ``InputHandler`` script, which takes care of responding and managing input
+ - the ``PlayerData`` scriptable object, which holds various parameters used by the states.
+
+ ### The ``PlayerState`` class
+ ```cs showLineNumbers
+ public class PlayerState {
+    protected Player player;
+    protected PlayerStateMachine stateMachine;
+    protected PlayerData playerData;
+
+    protected bool isAnimationFinished;
+    protected bool isExitingState;
+    protected float startTime;
+    protected string animBoolName;
+
+    public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) { }
+
+    public virtual void Enter() { }
+    public virtual void Exit() { }
+    public virtual void LogicUpdate() { }
+    public virtual void PhysicsUpdate() { };
+    public virtual void DoChecks() { }
+    public virtual void AnimationTrigger() { }
+    public virtual void AnimationFinishTrigger() { }
+}
+ ```
+
+ For the sake of brevity, I omitted most of the implementations. However, looking at the script it's easy to see what it does. Lines 2-4 hold references to useful components; lines 6-9 hold state inner data; line 11 is a default constructor; lines 13-19 have various functions. ``Enter()``, ``LogicUpdate()``, ``PhysicsUpdate()`` and ``Exit()`` are 'lifecycle' functions, and their names are pretty self-explanatory. ``DoChecks()`` contains various checks that a state needs to do at some points in the code. ``AnimationTrigger()`` and ``AnimationFinishTrigger()`` are used to hook into animation events, which is needed for some states.
+
+ ### The ``PlayerStateMachine`` component
+ This one is pretty simple: first, it's initialized with a default state. Then, it has only another function: ``ChangeState()``, which calls ``Exit()`` on the current state, changes it to the new state, and then calls ``Enter()`` on it.
+
+ ### The ``Player`` component
+ At the start of this post, I stated that Bardent's player controller was amazing (and it is), but if I had to choose something I don't like about it, it'd be the ``Player`` script. It's a mishmash of random functionality: 
+ - it holds an exhaustive list of all the ``PlayerState``'s, so that states can change to other states,
+ - it has functions to do common tasks like set the player's velocity,
+ - it has function to check certain conditions, like being grounded,
+ - and it has some more random functions.
+ 
+ However, it does work. Just not cleanly.
+
+ ### The structure of the State Machine
+ &&&img[images/posts/metroidvania/SMD.png](Diagram of the state machine)  Image by Bardent
+ &&&
+
+ The image is pretty obvious, but basically there is a set of states all hard-wired to transition to some other states (which I intend to change).
+
+ ## Conclusion
+ All things considered, this player controller is very good, but there is some room for improvement. I intend to make this system more generalist, modular and overall cleaner. However, for the next post we'll take a detour from coding. Because, in the meanwhile, I've been writing some **lore**. So the next post will be about my creative process: how I come up with ideas, and how I perfect them. I hope I'll have you with me again! Goodbye 'til then.]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/metroidvania_devlog3</link>
+            <guid>localhost:3000/blog/metroidvania_devlog3</guid>
+            <pubDate>Fri, 03 Feb 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[How do I come up with the story for my game? What even is a game's story?]]></description>
+            <content:encoded><![CDATA[
+## Story-driven vs. Gameplay-driven
+Metroidvanias are, and have always been, story-driven games: since the 80's classics like Metroid and Castlevania, to recent hits like Hollow Knight and Dead Cells. But what does it mean for a game to be story-driven. In my view, games are composed of two major elements: the gameplay, related to actually playing the game, and story, which is all about narrating past or present (and perhaps future) events to the player. Being story-driven or gameplay-driven relates to which of the two is more important for the game. For example, think of Minecraft (the example for everything it seems): while you might argue that there's some lore sprinkled around, it is clear that game mechanics such as mining and crafting are much more important to the game. This makes it a gameplay-driven game. Now, think of Hollow Knight: yes, there are bosses to fight, parkour challenges and whatnot, but at the end of the day, you're playing it to unravel its mysteries and stories.
+
+## What *is* a story?
+I believe a story isn't one thing, but instead a collection of things. Think of your favourite book (or movie if you must). I'm sure you'll be able to identify some of these elements:
+ - an overarching plot (what is the driving force behind the unrolling of events?)
+ - character evolution (how did the story's events change the characters?)
+ - back-story (what did you find out about the characters' past?)
+ - world building (what did you learn about the world in which the action takes place?)
+
+ In my opinion, a good story is one which manages to combine all of these in just the right proportions. Each of these parts is a hard task in of itself, and combining them more is more than just putting them together.
+
+ ## How does story fit into a game?
+ More often than not, you can just 'put' story into a game, you have to blend it in. Firstly, it is important to make some decisions, like:
+  - Is the game story or gameplay-driven?
+  - What story do **you** want to tell?
+  - What message do you want to pass to the players?
+  
+  That last one is quite important. It is not necessary to pass a message, but is something you can do, if you think it'll enhance the story. And, assuming you get some popularity, it's a very powerful way to convey something. For example, you might use the story to spark a sense of injustice in the players, encouraging them to stand up against it. Or you might present them with morally grey situations, and make them reflect about something. It's a sea of possibilities. Of course, you might tell a story for the sake of telling a story, without any message. And that's fine too, and the story can be amazing nonetheless.
+ 
+ So let's take a look at how each of the parts mentioned previously can fit into a game.
+
+ ### World building
+ This one can be both the easiest and the hardest. Personally, I find world building an essential part of any story (not really any, but you get the point). In a gaming context, you'll probably see it being called 'lore'. Basically, it's all the game tells you about the past of its world. In my opinion, there are two kinds of world building in games (I didn't come up with this classification myself, but I'm not sure where I first heard it), and they are **soft world building** and **hard world building**. The key difference is that soft world building is hinted at, while hard world building is thrown at the player. For example, an old parchment reading as follows would be hard world building:
+ @@@
+ To the emperor
+
+ -November 1st, 1576
+
+ Mine lordship, Grand General reports to thee the stationing of the Black Battalion near the battlefield at the eastern border.  The foe hath tried several times to unprovide our place.  I know not how much longer we bear.  The soldiers are demoralized.  We shall attend thy command. 
+ @@@
+
+ By reading this, the player easily learns that there was a war at the eastern border, at which the Black Battalion fought, and that it wasn't going very well to the nation of this letter's writer.
+ Soft world building, on the other hand, is much more subtle. It's what the game tells the player through non-textual elements, like the architecture and purpose of buildings, props in the level design, and even the connections between places. Soft world building, more than hard world building, can contribute to the immersion of the player, making it a great tool to have at your disposal.
+
+ ### Plot
+ The plot is the most important thing in a game's story. Without it, the story will seem incoherent and untied to the gameplay. Usually, it's also what defines the goal of the game, in some way or another. However, just because it's the most important, it doesn't mean it's what you should focus the most on, for three reasons. Firstly, it won't make a good story just by itself. In other words, without the other elements, plot is nothing. Secondly, game plot is usually simple, and for good reasons. Imagine this situation: you hear in a tavern that a big bad guy has been kidnapping people from town to practice dark magic, his only weakness being an amulet, guarded by ten giant beasts. You spend hours grinding upgrades and slaying beasts, but, at last, you have the amulet. You head straight to the big bad guy's not-so-secret lair only to learn from him that the kidnappings were the work of his brother, who put the blame onto him. "Wow!", you think, "What a great plot twist". He then goes on to tell you that to defeat his brother you'll need a special spell. That's when it clicks - that amulet you spent hours to attain is utterly useless. This is of course an exaggeration. but it does show that a simpler plot would have been better. So, when making the plot for a game, follow the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle). That doesn't mean you should have a super simple plot, nor that it should be obvious to the player straight away, but that you should try to avoid over-complicating the plot. As a check, you can try stating your plot as a series of crucial events. If you think the series to be too long (how long is too long is a very subjective and precise decision, which you must make yourself), then you should consider simplifying.
+
+ ## Conclusion (kind of)
+ That was a lot to take in (or not if you're already a pro at this), and at first, I was going to talk about everything in just one post, but this one is already getting really long, given how information dense it is. So I'll split it up into two (maybe three) parts. One last tip I'd like to give you is take notes! You'll thank it later. Come back next time for some talk about characters, backstory and character evolution. By the way, I also want to mention that this site now has a dark-mode! Check out that new button in the top-right corner of the page. Until then, have a good time story-writing (or not, I won't force you) and goodbye!]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/metroidvania_devlog4</link>
+            <guid>localhost:3000/blog/metroidvania_devlog4</guid>
+            <pubDate>Fri, 17 Feb 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Come with me to take a look at how well crafted characters can massively improve a game.]]></description>
+            <content:encoded><![CDATA[
+In this post, we'll pick up where we left of in the last one. As a reminder, this was the list of elements that make a story I presented:
+ - an overarching plot (what is the driving force behind the unrolling of events?)
+ - character evolution (how did the story's events change the characters?)
+ - back-story (what did you find out about the characters' past?)
+ - world building (what did you learn about the world in which the action takes place?)
+ 
+ We've already talked about plot and world building, so this post will be all about characters.
+
+## Characters
+Before continuing, it is important to discuss what characters are and how they behave. A character is any agent that plays a role in the story. There are two main kinds of characters (in a game): player characters (or PCs) and non-player characters (the infamous NPCs). These two types of characters must be handled in very different ways. For instance, you can make an NPC however you want, giving it any kind of back-story and personality the story requires. With a PC, however, you have to make sure the player is aware of the PC's back-story and personality. You also have to be aware that some of the player's personality and way of being will inevitably bleed into the character, and you have to account for that in the design of the story.
+
+### PCs: ensuring players know them
+As I just mentioned, a PC's back-story and personality is most likely unknown to the player, which can be problematic. For example, imagine a PC that's a member of a secret organization. The PC should, for instance, know the organizations ideals and goals. But how can the player know it? It turns out there are a few tricks one can use to make sure a player knows all they need to know. The most used method is to have a PC which is completely new in the game's world (this can be applied in a broader or a narrower scope). In the previous example, the game could start with the player joining the organization. That way, the PC wouldn't be expected to know anything, and would even be taught valuable information. If you think carefully, you'll find that there are lots of games that do this. However, this method can be very limiting when creating a story. So, what other options are there? For starters, you can find excuses for the player not to know anything: maybe they have amnesia, or perhaps they're actually impersonating their twin brother, because someone needs to cover up his death. But what if you want the PC to know things? Well, maybe you can just expect the player to know them. This won't work for every game, but throwing the player into a world they don't know, while everyone around them assumes they know it can give rise to interesting gameplay. Anyway, the important thing to take away is that you can't fill your PCs with back-story and personality traits and expect the player to follow them like rules.
+
+### Back-story
+Back-story is **very** important. A character, be it a PC or an NPC, has got their own personality and way of being, which will inevitably be altered by their past life experiences. For a game, the best way is to have some sort of outline of a character's life. How far back it goes really depends on the character. For some, you might have to go all the way to their birth, while for others, a few years may be enough. Once you have an outline, you'll have to tell it to the player. There are many tools you have at your disposal to do so. You can have dialogs between the PC and the character in question, where the character hints at, or even remembers his past. But you can also suggest it through the character's actions. For instance, if the character is hesitant to go on a boat trip, the player might guess something bad or sad happened to him or to someone he cared about inside a boat.
+
+### Character arcs
+Maybe you want your game to focus only on the main plot. But maybe you need something more to tell. Why not give some importance to a specific character? That's what a character arc is: a smaller story focused on a character, which somehow relates to the overall plot. Character arcs can be very useful to make the player care about a character, to fill in some empty spaces in the story (there's an idiom for this in portuguese which I particularly like: "encher chouri&#231;os", lit. "to fill sausages"), and to foreshadow or explain something in the plot.
+
+### Character evolution
+While the past has an effect on a character's personality and way of being, the present must have one as well. Because nobody will like a character that stays the same throughout the story. Instead, a character should change due to what happens to him (keep in mind, change doesn't need to be for the best). This doesn't mean a character has to change wildly, sometimes just a small change is enough (and in a few special cases, no change at all is the best option, but only if it makes sense - and those cases are very rare).
+
+## Final thoughts
+After writing these two posts, I realised that, to some, I might sound like I'm stating set in stone rules for making the story for a game. But that is not at all my intention. These should be seen as my personal opinion, and advice for those who care to listen. At the end of the day, any way of making a story is right, as long as the story's good. That said, I hope you enjoyed reading my rambling about story-telling. Next time, we'll go back to the technical stuff, although I'm not sure what I'll write about. Until then, goodbye!]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/metroidvania_devlog5</link>
+            <guid>localhost:3000/blog/metroidvania_devlog5</guid>
+            <pubDate>Fri, 03 Mar 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[The state machine system has been refactored and has a fancy new editor]]></description>
+            <content:encoded><![CDATA[
+In [this post](https://levimcgomes.github.io/blog/metroidvania_devlog4), I mentioned I was completely satisfied with the way the state machine system was working. And when you don't like something, you change it, if you can. And in programmer-land, you can always change your code. So I got to work changing the state machine system to something I find better and cleaner. I haven't yet implemented everything, but here's an outline:
+1. ``StateMachineComponent`` is attached to a game object and assigned a ``StateMachine`` to work with
+1. The ``StateMachine`` is started
+1. Every frame, the ``StateMachine`` is ticked
+    1. The current ``State`` is ticked. This is where the ``State`` acts and does something.
+    1. The current state has a list of ``Transitions`` associated with it, its exit transitions.
+    1. The ``StateMachine`` loops over every one of those transitions and calls its ``DoTransition`` method. This method returns a ``bool`` and a ``State`` (through an ``out`` parameter), where ``true`` means the transition should be done. All successful ``Transitions`` are collected, and then a ``Transition`` is selected to be completed by means of a priority index. After a ``Transition`` is selected, the ``StateMachine`` changes to its returned ``State``. If no ``Transition`` is made the ``StateMachine`` just remains in the same ``State``.
+1. Every fixed frame, the ``StateMachine`` if fixed-ticked. This only fixed-ticks the current state, and doesn't process transitions.
+
+Furthermore, every ``State`` and ``Transition`` has to its availability a set of data from different sources:
+ - each ``StateMachine`` asset has a ``ScriptableObject`` which holds global data.
+ - there's also a lot of runtime data from different sources which can be read, such as the player's data, user input or game state.
+
+ In my opinion, these reworks make this system much better and cleaner.
+ ## The Editor
+ Of course, a StateMachine system needs a good graphical editor. And that's exactly what I made. Using the new UI Toolkit and the UI Builder, as well as experimental ``GraphView`` component, I crafted an editor to create and connect states and set the conditions on a ``Transition``.
+
+ That's all I have to say for today. This was a shorter post, but making refactorings and an editor isn't much to write home about. I hope next time I can make something a bit longer. 'Til then, goodbye!
+]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/physics_sim0</link>
+            <guid>localhost:3000/blog/physics_sim0</guid>
+            <pubDate>Thu, 30 Mar 2023 23:00:00 GMT</pubDate>
+            <description><![CDATA[We'll start working on a physics engine to explore the wonderfull world of dynamics and mechanics!]]></description>
+            <content:encoded><![CDATA[
+For the last few months, I've been writing almost exclusively about my game. I'm still working on it, and I'll be posting more devlogs, but I also want to write about other stuff. So this will be the first in a series of tutorials about making a physics engine from scratch with C#. Why? Because I like physics. So without further ado, let's get started.
+
+## Creating the project and making the visualisation
+Before we start making a physics simulation, we need some way to view what the simulation is computing. For the sake of simplicity, I'll use [Raylib](https://www.raylib.com/index.html), and it's [C# bindings](https://github.com/ChrisDill/Raylib-cs). It's very easy to pick up (I hadn't ever used it, but I found my way around it in less than a day) and its simplicity will allow us to focus oon the physics. Furthermore, I'll be using Visual Studio to do the coding, so the process I'll describe for installing the library will be for Visual Studio.
+
+First, I created a new C# project. To get a clean slate, I chose a Console App. I named the solution PhysicsSim and the project PhysicsSimTester, but you can choose other names. Then I added another project to the solution, specifically a class library, named PhysicsSim. The class library will be the actual physics simulator, while the console app will only use it, in order to allow us to test our physics code. From now on, I'll refer to the class library as the *'library'* and to the console app as the *'tester'* We'll be starting by making a particle based engine, and then upgrade it to handle rigidbodies. So let's add a new class called ``Particle`` to the library. For now, I'll leave it blank. We'll come back to it later, I only added it this soon so we can prepare a skeleton for the testing code. That way, I can get it out of the way early, and then focus on implementing the physics.
+
+Now we need to install the ``raylib-cs`` NuGet package. If you don't know how to install a NuGet package, search it up. Also, we'll have to add a reference to the library in the tester. With this out of the way, we can start coding. Let's open up the autogenerated Program.cs in the tester. At the top we'll add references to Raylib, the physics library and to the tester namespace
+```cs showLineNumbers
+using Raylib_cs;
+using PhysicsSim;
+using PhysicsSimTester;
+```
+
+Inside the ``Main`` function, we'll write the following code:
+```cs showLineNumbers
+private static void Main(string[] args) 
+        // Initialize Raylib
+        Raylib.InitWindow(800, 800, "Physics Sim");
+        Raylib.SetTraceLogLevel(TraceLogLevel.LOG_ALL);
+        Raylib.SetTargetFPS(200);
+        
+        // Core loop
+        while(!Raylib.WindowShouldClose()) {
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.BLACK);
+            Raylib.DrawCircle(400, 400, 100, Color.WHITE);
+            Raylib.EndDrawing();
+        }
+
+        Raylib.CloseWindow();
+    }
+```
+
+First, we open a 800 by 800 window, tell Raylib to log everything and set the framerate to 200. Then we loop until Raylib tells us we should close the window. Every frame, we prepare for drawing, clear the canvas, draw a circle and send out the new frame. If you run this code, you should get something like fig. 1.
+&&&img[images/posts/physics/raylib_helloworld.png](Figure 1) A simple Raylib program.
+&&&
+
+Next we'll add a ``Visualisation`` class. This will be what actually draws things to the screen in the final program.
+```cs showLineNumbers
+using PhysicsSim;
+using Raylib_cs;
+
+namespace PhysicsSimTester
+{
+    public static class Visualization
+    {
+        public static int Res;
+        public static int TextUnits { get => Res / 100; }
+        public static Font font;
+
+        // Variables used for the debug interface
+        private struct SmoothDebugFloat {
+            private const int cacheMax = 64;
+            private int currentIndex;
+            private float[] cachedValues;
+            private float sum;
+            public float AverageValue { get => sum / cacheMax; }
+
+            public SmoothDebugFloat() {
+                currentIndex = 0;
+                cachedValues = new float[cacheMax];
+                sum = 0;
+            }
+            public void FeedValue(float value) {
+                sum -= cachedValues[currentIndex];
+                sum += value;
+                cachedValues[currentIndex] = value;
+                currentIndex = (currentIndex + 1) % cacheMax;
+            }
+        }
+        private static SmoothDebugFloat deltaTime;
+
+        
+        public static void Init(int res) {
+            // Set the resolution
+            Res = res;
+
+            // Initialize Raylib
+            Raylib.InitWindow(Res, Res, "Physics Sim");
+            Raylib.SetTraceLogLevel(TraceLogLevel.LOG_ALL);
+            Raylib.SetTargetFPS(200);
+            // Load a better font
+            font = Raylib.LoadFontEx("times.ttf", 256, null, 1024);
+
+            deltaTime = new SmoothDebugFloat();
+        }
+
+        public static void DrawAll(params Particle[] objects) {
+            foreach (var obj in objects) {
+                Draw(obj);
+            }
+        }
+        public static void Draw(Particle obj) {
+            
+        }
+
+        public static void DrawDebugInterface(float dt) {
+            // Feed the delta time to the corresponding smooth value
+            deltaTime.FeedValue(dt);
+
+            // Write info to the screen
+            DrawDebugLine($"{objects.Length} objects @ {(1 / deltaTime.AverageValue).ToString("F0")} FPS", 2, 2);
+            DrawDebugLine($"{(dt*1000).ToString("F4")}Δt (in ms)", 2, 4);
+        }
+        private static void DrawDebugLine(string line, float x, float y) {
+            Raylib.DrawTextEx(font, line, new System.Numerics.Vector2(x * ScreenUnit, y * ScreenUnit),
+                    (int)(2.6 * ScreenUnit), (int)(ScreenUnit / 3), Color.RAYWHITE);
+        }
+        private static void DrawDebugLine(string line, float x, float y, Color color) {
+            Raylib.DrawTextEx(font, line, new System.Numerics.Vector2(x * ScreenUnit, y * ScreenUnit),
+                    (int)(2.6 * ScreenUnit), (int)(ScreenUnit / 3), color);
+        }
+    }
+}
+
+```
+
+Thats's a lot, so let's break it down. Firstly, we declare a few variables for convenience. Next we declare the ``SmoothDebugFloat`` struct. This struct holds a list ov previous values of *something* and computes their average. This way, values that change very fast are smoothed. As we need to write more and more debug info, this will become very usefull. For now, we're using it only for delta time. Then we initialize the visualization. We set the resolution, open a window, set the log level (what kind of info Raylib should output to the console), set the desired FPS, load a font ant initialize our delta time. Next, the ``DrawAll`` function receives a list of particles and ``Draw``s each one of them. For now, we don't actually ddraw anything. Finally, we have a function to draw some debug info to the screen.
+
+For the font loading to work, it is necessary to have a font file in the same folder as the program. To get the file, if you're on Windows, you can go to ``C:\Windows\Fonts`` and search for the font family you want (for instance, I chose Times New Roman). Then open it and copy the specific font (I chose the normal one, but you could use bold or italic). Open your project's root folder and navigate to the folder where the ``.exe`` file is, and paste the font file.
+
+Now it's only a matter of calling these functions from ``Main``.
+```cs showLineNumbers
+private static void Main(string[] args) 
+        // Init the visualization
+        Visualization.Init(800);
+        
+        // Core loop
+        while(!Raylib.WindowShouldClose()) {
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.BLACK);
+            Visualization.DrawAll();
+            Visualization.DrawDebugInterface(Raylib.GetFrameTime());
+            Raylib.EndDrawing();
+        }
+
+        Raylib.CloseWindow();
+    }
+```
+
+And this concludes what we could call the frontend of this app. Before we start implementing the simulation itself, it's necessary to review a lot of maths and physics. So, not to make this post enormous, I'll postpone that for the next post, making this one a shorter one. I'm really excited for this project, and I hopefully so are you. Until the next time, have some fun toying around with Raylib! As a side note, I'd advise you to study some [calculus](https://youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) and [linear algebra](https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) while you're waiting for the next post, especially if you don't know much about these topics, because they'll be very important. And finally, you can find the source code for this project (although at a later stage) on [GitHub](https://github.com/levimcgomes/PhysicsSim).]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/physics_sim1</link>
+            <guid>localhost:3000/blog/physics_sim1</guid>
+            <pubDate>Thu, 13 Apr 2023 23:00:00 GMT</pubDate>
+            <description><![CDATA[We'll review the maths needed to simulate physically accurate movement.]]></description>
+            <content:encoded><![CDATA[
+In the last post, we set up a simple Raylib application to allow us to view the simulation we were going to make. Today, let's look at all the maths and physics needed to make said simulation. Without further ado, let's get started!
+
+## Maths
+Before we start coding, there are some maths and physics concepts one must know to make a physics engine. I'll try to explain things as they appear, and I'll use this post to explain quite some concepts in one go. However, I'm assuming you have an understanding of algebra, trigonometry and calculus. I will also give a refresher on linear algebra, but it won't be enough to fully understand it. If you're not comfortable with any of these topics, go study it and come back afterwards.
+
+### A note on the notation
+The notation used throughout this series of posts will be pretty much standard, although I have made some uncommon choices. So, to avoid confusion, I'll just state the notation used for everything.
+
+Scalars are denoted as an italic Latin or Greek letter: $x, y, T, \theta, \alpha$. Functions are denoted in the same way, with a variable (or more, if necessary) in between parentheses: $x(t), \rho(x,y,t)$. However, the variable will commonly be omitted for functions of time. Vectors are denoted as a bold lowercase Latin or Greek letter: $\mathbf{r}, \mathbf{v}$. A subscript of $x$ or $y$ is used to denote a component of a vector: $\mathbf{r}_x, \mathbf{r}_y$. Other subscripts are used to distinguish between different vectors, for instance the position of objects $a$ and $b$: $\mathbf{r}_a, \mathbf{r}_b$. The magnitude of a vector is denoted by enclosing the vector in two vertical bars: $\lVert\mathbf{r}\rVert$. Normalized/unit vectors are denoted with a hat: $\mathbf{\widehat{r}}$. Matrices are denoted as a bold uppercase Latin or Greek letter: $\mathbf{M}, \mathbf{I}$. Subscripts represent the components of the matrix, like indexes in array notation (but without the brackets): $\mathbf{M}_{00}, \mathbf{M}_{ij}$. An uppercase delta before a variable represents a change in its value: $\Delta x, \Delta\mathbf{r}$. Derivatives are denoted with Leibniz notation: $\frac{dx}{dt}, \frac{d^2\mathbf{r}}{dt^2}$. Additionally, derivatives with respect to time can also be denoted using Newton's notation, where the number of dots represents the order of the derivative: $\dot{x}, \ddot{\mathbf{r}}$.
+
+### Linear algebra
+Linear algebra is all about vectors, which are ordered lists of numbers. As well be working in two dimensions, our vectors will have two numbers. We can define a vector and give it some coordinates:
+$$\mathbf{a}=\begin{bmatrix}2 \\ 0\end{bmatrix}$$
+
+These coordinates can be thought of in two ways. Either it is a point in space (imagine starting at the origin, and moving 2 units right and 0 units up: the point where you end up is the point corresponding to this vector) or a direction (imagine the direction from the origin to the previous point, like an arrow from one to the other). Like with normal numbers (usually called *scalars* in linear algebra), there is a variety of operations that can be performed on vectors.
+
+**Addition** is very straight-forward, it's just a matter of adding every component:
+$$\mathbf{a}+\mathbf{b}=\begin{bmatrix}\mathbf{a}_x \\ \mathbf{a}_y\end{bmatrix} + \begin{bmatrix}\mathbf{b}_x \\ \mathbf{b}_y\end{bmatrix}=\begin{bmatrix}\mathbf{a}_x+\mathbf{b}_x \\ \mathbf{a}_y+\mathbf{b}_y\end{bmatrix}$$
+
+**Negation** is just as easy:
+$$-\mathbf{a}=\begin{bmatrix}-\mathbf{a}_x \\ -\mathbf{a}_y\end{bmatrix}$$
+
+From these, **subtraction** is easily derived:
+$$\mathbf{a}-\mathbf{b}=\mathbf{a}+(-\mathbf{b})=\begin{bmatrix}\mathbf{a}_x \\ \mathbf{a}_y\end{bmatrix} + \begin{bmatrix}-\mathbf{b}_x \\ -\mathbf{b}_y\end{bmatrix}=\begin{bmatrix}\mathbf{a}_x-\mathbf{b}_x \\ \mathbf{a}_y-\mathbf{b}_y\end{bmatrix}$$
+
+**Multiplication** is not as easy though, because there are actually **4** ways of multiplying vectors. Firstly, it is possible to multiply a scalar by a vector. This is called **scalar multiplication**. Before you look at the formula, it is a good exercise to try and find it by logic. As mentioned previously, negating a vector is the same as negating each of its components. If you know your algebra, you might recall negation is the same as multiplication by -1, thus you already know what happens when you multiply by -1. Can you guess what happens when you multiply by other numbers? Anyway, here's the formula:
+$$s\mathbf{a}=\begin{bmatrix}s\mathbf{a}_x \\ s\mathbf{a}_y\end{bmatrix}$$
+
+>On a side note, multiplication by a scalar has the effect of scaling a vector, while keeping its direction intact. That's why numbers are called scalars in the first place. For instance, multiplying by 2 effectively doubles the length of a vector. And using Pythagoras's Theorem, it is possible to calculate the length of a vector (that is, if the bases are orthogonal, which they usually are):
+>$$\lVert\mathbf{a}\rVert=\sqrt{\mathbf{a}_x^2+\mathbf{a}_y^2}$$
+>Also, just as we can multiply by a scalar, we can also divide using simple algebra:
+>$$\mathbf{a}/s=\frac{1}{s}\mathbf{a}=\begin{bmatrix}\mathbf{a}_x/s \\ \mathbf{a}_y/s\end{bmatrix}$$
+>At last, the reason for this side note appears! If you divide a vector by its length (remember, that means you're scaling it down by its own length), it will end up with a length of 1 (don’t just take my word for it – try to prove, either geometrically or algebraically, that this is true). This very useful operation is called normalization, and the result is a normalized or unit vector.
+>$$\mathbf{\widehat{a}}=\frac{\mathbf{a}}{\lVert\mathbf{a}\rVert}$$
+
+Furthermore, there are 3 ways to multiply two vectors together. The easiest, albeit least useful, is the **component-wise product** or **Hadamard product**. Component-wise means the operation is applied to each component individually (so addition, negation and subtraction are all component-wise operations):
+$$\mathbf{a}\odot\mathbf{b}=\begin{bmatrix}\mathbf{a}_x \\ \mathbf{a}_y\end{bmatrix} \odot \begin{bmatrix}\mathbf{b}_x \\ \mathbf{b}_y\end{bmatrix}=\begin{bmatrix}\mathbf{a}_x\mathbf{b}_x \\ \mathbf{a}_y\mathbf{b}_y\end{bmatrix}$$
+
+The notation I'm using is just a matter of personal preference, as far as I'm aware there isn't a standard notation for this.
+
+Much more useful is the **dot product** or **inner product** or **scalar product**. This has the peculiar property of producing a scalar from two vectors (thus scalar product), which represents how much a vector points in the direction of another one.
+
+$$\mathbf{a}\cdot\mathbf{b}=\mathbf{a}_x\mathbf{b}_x+\mathbf{a}_y\mathbf{b}_y=\lVert\mathbf{a}\rVert\lVert\mathbf{b}\rVert\cos{\theta}$$
+
+That last formula is very interesting. It says the dot product of two vectors is the product of their lengths and the cosine of the angle $\theta$ between them. Thus, if we have two normalized vectors $\mathbf{\widehat{a}}$ and $\mathbf{\widehat{b}}$, the cosine of the angle between them is equal to their dot product. This fact is exploited a lot in simulations (and even more in computer graphics), because a dot product is much faster to compute than a cosine. 
+
+The final product is the **cross product** or **outer product** or **vector product**. This one is very useful in three dimensions (where it is used to compute a vector perpendicular to two others), but not so much in two, where it is very similar to the dot product:
+$$\mathbf{a}\times\mathbf{b}=\mathbf{a}_x\mathbf{b}_x-\mathbf{a}_y\mathbf{b}_y=\lVert\mathbf{a}\rVert\lVert\mathbf{b}\rVert\sin{\theta}$$
+
+Finally, from component-wise multiplication it is possible to deduce **component-wise division**, although in practice I have never seen it being used.
+$$\mathbf{a}\oslash\mathbf{b}=\begin{bmatrix}\mathbf{a}_x \\ \mathbf{a}_y\end{bmatrix} \oslash \begin{bmatrix}\mathbf{b}_x \\ \mathbf{b}_y\end{bmatrix}=\begin{bmatrix}\mathbf{a}_x/\mathbf{b}_x \\ \mathbf{a}_y/\mathbf{b}_y\end{bmatrix}$$
+
+Once again, the notation is arbitrarily chosen. Although there isn't a need to use different symbols for scalar and component-wise division, as it can be inferred from the denominator, I find it better to clearly distinguish them.
+
+## Physics
+We're done with the (not at all) boring stuff. Let's get to the real thing: physics. In a physics simulation, we're usually most concerned with simulating the movement of bodies. At first, we'll start by simulating what physicists like to call point-masses: infinitely tiny points with a given mass. Usually, they're also called **particles**, and that's what we'll call them. These are really easy to simulate, because they don't have rotation or size, which massively simplifies maths! Before moving on, we'll also figure out how to connect them to create more interesting behaviour. Then we'll start thinking about **rigid-bodies**. These are objects *with* size and rotation in which deformations can be ignored (things like a table or a box). These are much harder to simulate, but we'll manage to do it! If we were to consider deformations, we'd have **soft-bodies**. Once again that's a major step up in complexity, and I'm not sure if I'll implement them. Finally, there are also fluids, which once again are very complex. So, now knowing what awaits us in the future, let's look at the maths behind particles!
+
+### Newtonian mechanics
+Firstly, to study the movement of bodies, it is necessary to devise a way to represent such movement in mathematical language. There is a fundamental property that is the basis of everything else: a body's position, represented by the vector $\mathbf{r}$. From this we can (literally) derive other quantities: the velocity and the acceleration.
+$$\mathbf{v}=\mathbf{\dot{r}}$$
+$$\mathbf{a}=\mathbf{\dot{v}}=\mathbf{\ddot{r}}$$
+
+It is important to distinguish *velocity* from *speed*. While they are used interchangeably in ordinary speaking, they are very different things in physics. *Velocity* is a vector, with a direction and a magnitude. That magnitude is *speed*. Thus, a constant speed means a body moves at a constant pace, while a constant velocity means a body moves at a constant pace and always in the same direction.
+
+Next, we can take a look at Newton's laws and equations, which will govern most of the movement in our engine. Newton formulated three laws that describe the behaviour of moving bodies.
+
+**Law 1:** Every body continues in its state of rest, or of uniform motion in a straight line, unless it is compelled to change that state by forces impressed upon it.
+
+**Law 2:** The change of motion of an object is equal to the force impressed; and is made in the direction of the straight line in which the force is impressed.
+
+**Law 3:** To every action, there is always opposed an equal reaction; or, the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.
+
+*This is a translation of Newton's statements which were originally written in Latin in his book Principia Mathematica (according to [Wikipedia](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion)).*
+
+Let's analyze these laws further. The first law represents the concept of inertia. It might seem strange at first. It is obvious that a resting body will only move if it is made to move by some force, nothing moves *spontaneously*. (Note for the curious reader - Here the term spontaneously is used quite liberally. For example, one might say a human being does move spontaneously. And that would be somewhat right. Here I use spontaneously not as “of its own accord”, but as “without the action of any force”.) However, it seems weird to say that a moving body keeps moving. For instance, try rolling a pen on your table (I encourage you to try it before reading the explanation, and again afterwards - can you notice what happens to the pen as it moves?). It certainly stopped, seemingly against Newton's first law. Except, there *are* forces acting on the pen. These are the *dynamic friction* between it and the table, and the *air resistance* or *drag*. In a truly force-less environment (which is actually impossible, even space isn’t completely force free), a rolling pen would keep rolling on and on, unless something stopped it.
+
+The second law states that the change of motion is related to the force impressed. Here, change of motion refers to the derivative of **linear momentum**, and not of velocity. Linear momentum is given by the formula
+$$\mathbf{p}=m\mathbf{v}$$
+
+Given this, Newton's second law can be stated mathematically as
+$$\mathbf{F}=\frac{d\mathbf{p}}{dt}=\frac{d}{dt}(m\mathbf{v})$$
+
+Assuming mass is a constant (which it might not be), this can be simplified to the well known form
+$$\mathbf{F}=m\mathbf{a}$$
+
+This can be solved to find acceleration, which is what we'll need for a physics engine
+$$\mathbf{a}=\frac{\mathbf{F}}{m}$$
+
+Finally, the third law. In other words, it says that if a body, A, exerts a force on another body, B, then B also exerts a force on A, with the same magnitude and opposite direction. For example, imagine a book lying on a table. Due to gravity the book impresses a downwards force on the table's surface, that's its *weight* (mind that weight and mass are different things). According to the third law, the table should exert an upwards force of equal magnitude on the book. And this is indeed what happens. Where the table not to exert a force, the book would deform it and go through it. The force exerted by the table is called the *normal reaction*, because it is a reaction force along the direction of the surface's normal.
+
+Now we have the foundations of any particle based simulation: we can compute appropriate forces (respecting the third law), apply them to objects, updating their acceleration (according to the second law), and use the acceleration to compute new velocity and position vectors. Although we already have all the maths to do this, let's take a look at that last step.
+
+### Integration
+
+The main task of a physics engine is to accurately update the positions of simulated objects. We know how we can compute acceleration, but how can we use it to find position? Acceleration *is* related to position by the following equation:
+$$\mathbf{a}=\mathbf{\ddot{r}}$$
+
+Or, in a more suggestive notation,
+$$\frac{d^2\mathbf{r}}{dt^2}=\mathbf{a}$$
+
+For a moment, let's assume $\mathbf{a}$ is constant (we'll come back to this later). If we integrate both sides once, we get the following:
+$$\int{\frac{d^2\mathbf{r}}{dt^2}dt}=\int{\mathbf{a}\,dt}\Leftrightarrow$$
+$$\frac{d\mathbf{r}}{dt}=\mathbf{a}t+C$$
+
+This is a formula for velocity (which is the first derivative of position). In this context, the constant of integration is the initial velocity.
+$$\frac{d\mathbf{r}}{dt}=\mathbf{a}t+\mathbf{v}_0$$
+
+Integrating again we finally get a formula for position, where once more the constant of integration is the initial position.
+$$\int{\frac{d\mathbf{r}}{dt}dt}=\int{\mathbf{a}t+\mathbf{v}_0\,dt}\Leftrightarrow$$
+$$\mathbf{r}=\frac{1}{2}\mathbf{a}t^2+\mathbf{v}t+\mathbf{r}_0$$
+
+These two formulae are perfect for constant acceleration. However, things get harder when acceleration isn't constant, because it's impossible to integrate an arbitrary function analytically. As such, some approximations have to be made. For this explanation, let's focus only on calculating velocity (the same logic can be applied to position). The above formula worked for constant acceleration. So, we need to somehow recreate constant acceleration. First, let $\mathbf{v}_0$ be the initial velocity. Then, over a small interval $\Delta t$, assume acceleration is constant and use the previous formula to calculate 
+$$\mathbf{v}_1=\mathbf{a}\Delta t+\mathbf{v}_0$$
+
+Then, update the acceleration to its new value, whatever it might be. Once again, let it be constant over a small interval and calculate $\mathbf{v}_2$. Generalizing, given you now the initial velocity, you can iteratively compute the velocity at any time step using this method:
+$$\mathbf{v}_{n+1}=\mathbf{a}\Delta t+\mathbf{v}_n$$
+
+This is one of many methods of **numerical integration**. The following animation explains it visually.
+
+&&&vid[images/posts/physics/sim1_NumericalIntegration.mp4](Animation 1) Approximating the acceleration in discrete steps.
+&&&
+
+## Conclusion
+That was a lot to take in. If you didn't fully understand the maths involved, you might want to take a look at these series about [calculus](https://youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) and [linear algebra](https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab). If you couldn't understand the physics itself, maybe read it again once or twice and let it all sink in. If you still don't understand, try finding some other resources out there, I'm sure there are plenty. Alternatively, if you have any questions, feel free to ask them in the brand new **comments section**! Anyway, on the next post we'll be going back to coding and implement all we discussed in this post, so keep your eyes peeled. Until then, goodbye!
+]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/ptsdc</link>
+            <guid>localhost:3000/blog/ptsdc</guid>
+            <pubDate>Fri, 17 Mar 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[Two weeks ago, I participated in PTSDC. This post is somewhat of a reflection on what I did there]]></description>
+            <content:encoded><![CDATA[
+A few weeks ago, the head of my school's science club reached out to all the members, inviting us to join the PTSDC. Although it isn't closely related to my interests, I decided to join in. Now, after-the-fact, I'm glad I chose to participate, because it was at the same time one of the most fun and most stressing days I ever had.
+
+## Introduction
+I assume most of you don't know what SDC is. SDC stands for Space Design Competition. This quotation is taken from the EUSDC official [site](https://eusdc.org/about-us/).
+>The European Space Design Competitions are a multinational framework of Science, Technology, Engineering, Arts & Mathematics (STEAM) space-a-thon challenges designed as simulations of life in industry.
+Traditional of the SDC events, teams are given a list of design requirements for a space settlement from a fictional client, and have a day to come up with a detailed proposal which they present to an expert panel of judges. The SDCs are open to any participant based in a European country (excluding UK) who is aged between 15 to 18 years old.
+The aim of the competition is to provide students the chance to experience what to expect within the space sector through conceptually design a detailed and fully costed proposal, take full responsibility of their design progress, and empower them with the skills necessary to overcome the challenges of working in large teams.
+
+So, basically, SDC is a competition aimed at high school students which attempts to simulate work in the space industry. Each year, the competitions present teams with a challenge related to designing some form of settlement somewhere in space, which they must complete in a short amount of time. Then, the teams present their project to a board of judges which chose a winning team. The competition is also structured in three phases:
+
+1. The National Phase: some European countries hold a national competition (this is where **PTSDC** stands). The winning team of each country passes on to the next phase. Students from countries without a national competition can apply directly to the second phase.
+1. The European Competition (**EUSDC**): in this phase, the participants are faced with a harder problem, which allows them to qualify to the next phase, if they manage to win.
+1. The International Competition (**SDC**):  this is the final phase. The winners of EUSDC, as well as other teams from outside Europe compete for a place in an inside trip to NASA's facilities.
+
+The PTSDC is the national competition in Portugal (as evidenced by the name), which happens to be where I'm from.
+
+## The story
+
+### Before the competition
+Before the *big day*, many things happened. Firstly, teams were made. My team, made up of 29 people in total, was composed of some people from my school's science club (because we all signed up together), some more people from other schools and a few people from the wining team on the Spanish competition (this was because it was the first Spanish competition, and it didn't go very well, so the winners joined the Portuguese competition to get some more experience). On the competition's eve, we all got two documents: the schedule and the *press release*. The latter gave us some information about what we'd be doing. It told us our goal was to design a mining settlement to be built inside lava tubes in mercury, called Bosloh (*bozz-low*).
+
+### During the competition
+The members of our team from the science club had arranged to meet at school for the competition. So, at 7:30, I arrived and went to the agreed meeting place. After some initial talk with the judges, technical assistants (TAs) and CEOs, we all chose our department. Available choices were **Humans Dept.**, **Structures Dept.**, **Automation Dept.** and **Operations Dept.**, of which I chose the last. We then voted on the *heads of department*, the *head of business and marketing* and the *president* for our team. After all the preparations, we finally got the **Request for Proposal** (RFP). This document explained thoroughly what we had to do, so we read it very carefully. My department was tasked with conceiving and explaining systems for *extraction and processing of minerals*, *water distribution and renovation*, *energy distribution and production* and *people and goods transportation*. We worked hard all morning, trying to come up with ideas. Around one o'clock, we had our *Red Team Review*, were we presented our work to the board of judges and received some advice from them, which we could use in the afternoon to improve our ideas. In the afternoon, we started developing our ideas and putting them on the final presentation. As the hours went by, it seemed our to-do list just grew bigger and bigger, but somehow we managed to finish everything in time. Then we had some time to rest before the presentation.
+
+### Presenting to the judges
+With all teams presentations finished and submitted, it was time to present our design to the judges, and my team happened to be first. Despite not being the head of department, it was I who presented Operations Dept.'s part. Modesty aside, I think I did a pretty decent job, as everyone did. Before we were worry free, we still had to answer some questions, but then our work was done and we the most we could do was bad-mouth the other teams while we watched them presenting (don't judge us just yet - after working practically non-stop for almost nine hours you'd do the same, and of course our microphones were muted, it was just between us).
+
+### The results
+After waiting for the results for way too long, the grand moment came. At least I imagine so. By that time, I had already gone home half-asleep. I did find out what the results were though. Unfortunately, we didn't win. However, I'd do it again without giving it a second thought. It is way too much fun to miss.
+
+## Reflections
+Now, writing about it almost two weeks after, there are some mistakes I can easily point out. Since I'm young enough to participate again next year, unlike most of my teammates, I'll try to look out for those and avoid making them again. But all things considered, it was totally worth it to lose a Saturday participating in PTSDC. They say to shoot for the stars, so next year I'm aiming for EUSDC! And on that note, I'll see you next time with a more ordinary post.]]></content:encoded>
+        </item>
+        <item>
+            <link>localhost:3000/blog/updates_status1</link>
+            <guid>localhost:3000/blog/updates_status1</guid>
+            <pubDate>Thu, 13 Jul 2023 23:00:00 GMT</pubDate>
+            <description><![CDATA[This blog hasn't seen a new post in a few months. Find out why, and also where I'm taking this blog from now on.]]></description>
+            <content:encoded><![CDATA[
+My last post was three months ago. So, where have I been? In short, I was very busy with school.
+
+In May and June, I had to focus most of my time on studying, so I didn't have much time to work on anything related to programming. But now it's my summer break, so I have a lot more free time. That means I'll be getting back to my usual schedule of posting every other Friday. But since I'm already talking about the current state of this blog, I might as well take this chance to tell you about my plans for the future.
+
+Firstly, this post isn't coming alone! On Monday, I'll be posting about the GMTK Game Jam, so keep your eyes peeled! After that, I intend to get back to working on my game, so the devlogs will definitely be coming back.
+
+As for the physics simulation tutorials, while I definitely want to continue that project, I'm not sure if it'll be coming back so soon. However, let me now what you think in the comments section - should I just focus on the devlogs, or should I continue the physics series as well? (If you don't see the comments section at the bottom of the post, reload the page and it should appear - I'm not sure what's causing that, but I'll fix it someday!)
+
+Further on, I've recently taken an interest on audio plugin development. I'm not sure if there'd be interest in posts about that though, so let me know if you'd like to read such posts in the comments.
+
+Lastly, I'd also really like to participate in [SoME3](https://some.3b1b.co/), but I'm not sure I'll have enough time, mostly because I don't even know what to talk about. So, once again, I'm asking for your help: Do you know of a problem with an interesting or counter-intuitive solution? A branch of mathematics that's relevant to computer science? I'm looking for something that's related to computer science, since that's what I cover in this blog, so if you have an idea you think might yield a good submission, leave it the comments below.
+
+That's mostly it for what I have planned in terms of content. But, before you leave, I've got some more news for you. I have a brand new newsletter! Right above the comments section, you should find a form to subscribe - just submit your email and you'll get notifications straight to your inbox whenever I make a new post!
+
+Alright, that's it for today. As always, thanks for reading and goodbye!]]></content:encoded>
+        </item>
+    </channel>
+</rss>
