@@ -48,21 +48,19 @@ const mediaContainer: MD_Container.ContainerOpts = {
 	},
 	render: function (tokens, idx) {
 		const m = tokens[idx].info.trim().match(/(.*)\[(.*)\]/);
-		if (m === null) return '';
 
-		const mediaType = m[1];
-		/* For some unknown reason, Svelte thinks
-		 /path/to/image.png
-		 means
-		 /blog/posts/path/to/image.png
-		 and even goes as far as trying to use that as a route
-		 for /routes/blog/[...slug]
-		 causing a lot of errors
-		 So we just give it a little hint :)
-		*/
-		const mediaSrc = '../../' + m[2];
-
-		if (tokens[idx].nesting === 1) {
+		if (m !== null && tokens[idx].nesting === 1) {
+			const mediaType = m[1];
+			/* For some unknown reason, Svelte thinks
+		 	   /path/to/image.png
+		 	   means
+		 	   /blog/posts/path/to/image.png
+		 	   and even goes as far as trying to use that as a route
+		 	   for /routes/blog/[...slug]
+		 	   causing a lot of errors
+		 	   So we just give it a little hint :)
+			*/
+			const mediaSrc = '../../' + m[2];
 			// opening tag
 			if (mediaType === 'img' || mediaType === 'image') {
 				return (
