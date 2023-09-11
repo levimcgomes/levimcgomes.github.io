@@ -106,8 +106,7 @@ const quoteContainer: MD_Container.ContainerOpts = {
 const katexOptions: katex.KatexOptions = {
 	macros: {
 		'\\R': '\\mathbb{R}'
-	},
-	output: 'html'
+	}
 };
 
 // Create the parser
