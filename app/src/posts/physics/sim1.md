@@ -130,7 +130,8 @@ $$\mathbf{v}_{n+1}=\mathbf{a}\Delta t+\mathbf{v}_n$$
 
 This is one of many methods of **numerical integration**. The following animation explains it visually.
 
-&&&vid[images/posts/physics/sim1_NumericalIntegration.mp4](Animation 1) Approximating the acceleration in discrete steps.
+&&&vid[images/posts/physics/sim1_NumericalIntegration.mp4]
+Approximating the acceleration in discrete steps.
 &&&
 
 ## Conclusion

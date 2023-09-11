@@ -52,7 +52,8 @@ The 'Relay Transports' section should have plenty to pick from. However, it has 
 ### Discord GameSDK
 
 I honestly thought this was it. Discord GameSDK is (as of now) a very good tool. It manages accounts for me, creates lobbies and connects players to them. And integrating it with Mirror was certainly possible. It had been done. Although [DiscordMirror](https://github.com/Derek-R-S/Discord-Mirror) was outdated and didn't work in the best of ways, it was a proof of concept. So I got working, trying to make a transport for Mirror using Discord GameSDK. That was when I read this message on Discord GameSDK's official Discord server:
-&&&img[images/posts/metroidvania/DiscordGameSDK_feature_remmoval.png]()The message.
+&&&img[images/posts/metroidvania/DiscordGameSDK_feature_remmoval.png]
+The message.
 &&&
 They are removing more than half of the SDK's features in five months. I truly don't know how they think this is a good idea, but it means I can't use it.
 

@@ -68,7 +68,8 @@ However, it does work. Just not cleanly.
 
 ### The structure of the State Machine
 
-&&&img[images/posts/metroidvania/SMD.png](Diagram of the state machine) Image by Bardent
+&&&img[images/posts/metroidvania/SMD.png]
+**Diagram of the state machine** Image by Bardent
 &&&
 
 The image is pretty obvious, but basically there is a set of states all hard-wired to transition to some other states (which I intend to change).

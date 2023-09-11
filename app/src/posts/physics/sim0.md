@@ -44,7 +44,8 @@ private static void Main(string[] args)
 ```
 
 First, we open a 800 by 800 window, tell Raylib to log everything and set the framerate to 200. Then we loop until Raylib tells us we should close the window. Every frame, we prepare for drawing, clear the canvas, draw a circle and send out the new frame. If you run this code, you should get something like fig. 1.
-&&&img[images/posts/physics/raylib_helloworld.png](Figure 1) A simple Raylib program.
+&&&img[images/posts/physics/raylib_helloworld.png]
+A simple Raylib program.
 &&&
 
 Next we'll add a `Visualisation` class. This will be what actually draws things to the screen in the final program.
