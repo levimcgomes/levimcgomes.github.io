@@ -13,7 +13,7 @@ function applyLineNumbers(code: string): string {
 	const rows = lines.map((line, idx) => {
 		return (
 			'<tr>' +
-			`<td class="line-number">${idx + 1}</td>` +
+			`<th class="line-number">${idx + 1}</td>` +
 			`<td class="code-line">${line}</td>` +
 			'</tr>'
 		);

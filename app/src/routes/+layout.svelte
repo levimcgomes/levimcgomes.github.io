@@ -5,6 +5,6 @@
 
 <Header />
 
-<main>
+<main class="py-0 px-[10%] lg:px-[20%]">
 	<slot />
 </main>

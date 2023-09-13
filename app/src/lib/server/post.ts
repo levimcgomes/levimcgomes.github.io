@@ -25,12 +25,15 @@ export function postFromPath(path: string, getContent = false) {
 	// bout ours is European style, so we need to do some juggling
 	const splitDate = (parsed.data['date'] as string).split('/');
 	const date = new Date(splitDate[2] + '/' + splitDate[1] + '/' + splitDate[0]);
+
 	if (getContent) {
 		return {
 			path: path,
 			title: parsed.data['title'] as string,
 			date: date,
+			date_string: parsed.data['date'] as string,
 			cover_image: parsed.data['cover_image'] as string,
+			cover_image_exists: fs.existsSync(process.cwd() + '/static/' + parsed.data['cover_image']),
 			tags: parsed.data['tags'] as string[],
 			excerpt: parsed.data['excerpt'] as string,
 			content: parsed.content
@@ -40,7 +43,9 @@ export function postFromPath(path: string, getContent = false) {
 			path: path,
 			title: parsed.data['title'] as string,
 			date: date,
+			date_string: parsed.data['date'] as string,
 			cover_image: parsed.data['cover_image'] as string,
+			cover_image_exists: fs.existsSync(process.cwd() + '/static/' + parsed.data['cover_image']),
 			tags: parsed.data['tags'] as string[],
 			excerpt: parsed.data['excerpt'] as string
 		} as Post;

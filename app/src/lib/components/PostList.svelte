@@ -4,6 +4,8 @@
 	export let postList: Post[];
 </script>
 
-{#each postList as post}
-	<PostComponent {post} />
-{/each}
+<div class="grid grid-cols-1 gap-x-4 gap-y-4 py-4 md:grid-cols-2 md:gap-x-[2%]">
+	{#each postList as post}
+		<PostComponent {post} />
+	{/each}
+</div>

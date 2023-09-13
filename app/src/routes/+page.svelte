@@ -9,7 +9,7 @@
 	<title>How I Made A Game</title>
 </svelte:head>
 
-<h1>How I Made A Game</h1>
+<h1 class="no-underline text-center text-5xl my-6">How I Made A Game</h1>
 <h2>Recent Posts</h2>
 <PostList postList={data.posts} />
 <h2 id="about">About</h2>
@@ -24,16 +24,16 @@
 </p>
 <h2>Random Stuff</h2>
 <div>
-	This paragraph is just what it's name says it is: random stuff. Firstly, some links.
+	<p>This paragraph is just what it's name says it is: random stuff. Firstly, some links.</p>
 	<ul>
 		<li><a href="https://github.com/levimcgomes/">My GitHub account</a></li>
 		<li>
 			<a href="https://github.com/levimcgomes/levimcgomes.github.io">This website's source code</a>
 		</li>
 	</ul>
-	Next, some utilities I've made for myself and put in this site for ease of access. Enjoy! (please note
+	<p>Next, some utilities I've made for myself and put in this site for ease of access. Enjoy! (please note
 	that these were made for personal use, so they're very low quality tools; however, I do think they're
-	useful)
+	useful)</p>
 	<ul>
 		<!--<li><a href="/hidden/color">Color Palette Helper</a></li>-->
 	</ul>
