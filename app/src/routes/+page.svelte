@@ -31,9 +31,11 @@
 			<a href="https://github.com/levimcgomes/levimcgomes.github.io">This website's source code</a>
 		</li>
 	</ul>
-	<p>Next, some utilities I've made for myself and put in this site for ease of access. Enjoy! (please note
-	that these were made for personal use, so they're very low quality tools; however, I do think they're
-	useful)</p>
+	<p>
+		Next, some utilities I've made for myself and put in this site for ease of access. Enjoy!
+		(please note that these were made for personal use, so they're very low quality tools; however,
+		I do think they're useful)
+	</p>
 	<ul>
 		<!--<li><a href="/hidden/color">Color Palette Helper</a></li>-->
 	</ul>

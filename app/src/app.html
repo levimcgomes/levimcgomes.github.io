@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
@@ -28,6 +28,26 @@
 		/>
 	</head>
 	<body data-sveltekit-preload-data="hover">
+		<script>
+			function loadTheme() {
+				// Load the theme from local storage on page load
+				// ThemeToggle will take over when it mounts
+				// but pre-loading the theme avoids a FOUC
+				var theme;
+				const stored = localStorage.getItem('theme');
+				if (stored) theme = stored === 'true';
+				else theme = !window.matchMedia('(prefers-color-scheme: dark)').matches;
+				// Set the class for tailwind
+				console.log('THIS IS ' + theme);
+				const body = document.getElementsByTagName('html')[0];
+				if (theme) {
+					body.classList.remove('dark');
+				} else {
+					body.classList.add('dark');
+				}
+			}
+			loadTheme();
+		</script>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
