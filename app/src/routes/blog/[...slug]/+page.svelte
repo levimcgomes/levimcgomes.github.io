@@ -2,6 +2,32 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	import Giscus from '@giscus/svelte';
+	import { themeStore } from '$lib/stores';
+	// Update Giscus whenever the theme changes
+	themeStore.subscribe((value) => {
+		try {
+			const iframe = document
+				.querySelector('giscus-widget')!
+				.shadowRoot!.querySelector<HTMLIFrameElement>('iframe');
+			if (!iframe || !iframe.contentWindow) return;
+			console.log('SEND MESSAGE: ' + value);
+			iframe.contentWindow.postMessage(
+				{
+					giscus: {
+						setConfig: {
+							theme: value ? 'light' : 'dark'
+						}
+					}
+				},
+				'https://giscus.app'
+			);
+		} catch (e) {
+			// Build doesn't like empty blocks...
+			console.log('Failed to communicate with Giscus, this is likely fine');
+		}
+	});
 </script>
 
 <h2 class="no-underline text-center text-5xl my-6">{data.post.title}</h2>
@@ -27,3 +53,18 @@
 >
 	{@html data.innerHTML}
 </div>
+
+<Giscus
+	repo="levimcgomes/levimcgomes.github.io"
+	repoId="R_kgDOH_rqaA"
+	category="Blog Comments"
+	categoryId="DIC_kwDOH_rqaM4CVNZX"
+	mapping="pathname"
+	strict="0"
+	reactionsEnabled="1"
+	emitMetadata="0"
+	inputPosition="top"
+	lang="en"
+	theme={$themeStore ? 'light' : 'dark'}
+	loading="lazy"
+/>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { themeStore } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 	// Store both the sun's and the moon's properties
@@ -73,6 +74,10 @@
 		opacity.set(props[theme ? 'sun' : 'moon'].opacity);
 	}
 	$: setTheme(theme);
+	$: {
+		themeStore.set(theme);
+		console.log('SET STORE');
+	}
 </script>
 
 <button on:click={toggleTheme}>
