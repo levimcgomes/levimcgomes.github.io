@@ -49,7 +49,7 @@
 	{/each}
 </ul>
 <div
-	class="text-lg [&_h2]:mt-4 [&_h3]:mt-4 [&_h4]:mt-4 [&_ul]:list-disc [&_ul]:list-inside [&_p]:indent-5 [&_img]:mt-6 [&_code]:text-[length:inherit] [&_pre]:bg-grey-800 [&_pre]:dark:bg-grey-200 [&_pre]:text-grey-100 [&_pre]:dark:text-grey-900 [&_pre]:rounded [&_pre]:overflow-x-scroll [&_pre]:border-2 [&_.line-number]:bg-grey-700 [&_.line-number]:dark:bg-grey-300 [&_.line-number]:text-accent-100 [&_.line-number]:dark:text-accent-900 [&_.line-number]:sticky [&_.line-number]:left-0 [&_.line-number]:px-1 [&_.line-number]:text-right [&_td]:pl-1 [&_blockquote]:border-l-4 [&_blockquote]:border-accent-500 [&_blockquote]:bg-accent-900 [&_blockquote]:dark:bg-accent-200 [&_blockquote_p]:indent-0 [&_blockquote]:p-3 [&_blockquote]:pl-2 [&_blockquote]:mx-5 [&_blockquote]:my-3"
+	class="text-lg [&_h2]:mt-4 [&_h3]:mt-4 [&_h4]:mt-4 [&_ul]:list-disc [&_ul]:list-inside [&_p]:indent-5 [&_img]:mt-6 [&_code]:text-[length:inherit] [&_pre]:bg-grey-800 [&_pre]:dark:bg-grey-200 [&_pre]:text-grey-100 [&_pre]:dark:text-grey-900 [&_pre]:rounded [&_pre]:overflow-x-scroll [&_pre]:border-2 [&_.line-number]:bg-grey-700 [&_.line-number]:dark:bg-grey-300 [&_.line-number]:text-accent-100 [&_.line-number]:dark:text-accent-900 [&_.line-number]:sticky [&_.line-number]:left-0 [&_.line-number]:px-1 [&_.line-number]:text-right [&_td]:pl-1 [&_blockquote]:border-l-4 [&_blockquote]:border-accent-500 [&_blockquote]:bg-accent-900 [&_blockquote]:dark:bg-accent-200 [&_blockquote_p]:indent-0 [&_blockquote]:p-3 [&_blockquote]:pl-2 [&_blockquote]:mx-5 [&_blockquote]:my-3 [&_eq]:contents"
 >
 	{@html data.innerHTML}
 </div>
