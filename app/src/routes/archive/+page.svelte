@@ -1,6 +1,9 @@
 <script lang="ts">
+	import PostList from '$lib/components/PostList.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
 <h2>Post Archive</h2>
-<!--TODO: tag filter-->
-<!--TODO: post list component-->
+<PostList postList={data.posts} />

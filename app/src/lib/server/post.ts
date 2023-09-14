@@ -6,7 +6,7 @@ import glob from 'glob';
 // Markdown parsing
 import matter from 'gray-matter';
 
-export function getPostList(): Post[] {
+export function getPostList(limit = -1): Post[] {
 	// All posts should be in /src/posts/,
 	// either in the top - level or inside
 	// sub folders
@@ -14,7 +14,8 @@ export function getPostList(): Post[] {
 
 	const posts = postPaths.map((path) => postFromPath(path));
 
-	return sortPostsByDate(posts);
+	if (limit === -1) return sortPostsByDate(posts);
+	else return sortPostsByDate(posts).slice(0, limit);
 }
 
 export function postFromPath(path: string, getContent = false) {
