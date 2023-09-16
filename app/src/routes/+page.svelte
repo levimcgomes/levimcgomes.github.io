@@ -41,3 +41,5 @@
 		<!--<li><a href="/hidden/color">Color Palette Helper</a></li>-->
 	</ul>
 </div>
+<!--The text just ended right at the bottom of the page, and it looked odd, so this adds some empty space-->
+<div class="py-12" />
