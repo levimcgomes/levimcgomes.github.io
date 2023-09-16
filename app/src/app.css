@@ -4,7 +4,7 @@
 
 @layer base {
 	body {
-		@apply bg-grey-900 dark:bg-grey-200 text-grey-100 dark:text-grey-900 font-[auto];
+		@apply bg-grey-900 dark:bg-grey-200 text-grey-100 dark:text-grey-900 font-[auto] transition-colors;
 	}
 
 	h1,
@@ -48,5 +48,9 @@
 @layer components {
 	.btn {
 		@apply bg-accent-500 px-2 py-1 rounded-md text-lg cursor-pointer text-center text-grey-900 not-italic no-underline;
+	}
+
+	giscus-widget::part(iframe) {
+		@apply mt-12;
 	}
 }

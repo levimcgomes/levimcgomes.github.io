@@ -12,7 +12,6 @@
 				.querySelector('giscus-widget')!
 				.shadowRoot!.querySelector<HTMLIFrameElement>('iframe');
 			if (!iframe || !iframe.contentWindow) return;
-			console.log('SEND MESSAGE: ' + value);
 			iframe.contentWindow.postMessage(
 				{
 					giscus: {

@@ -38,7 +38,6 @@
 				if (stored) theme = stored === 'true';
 				else theme = !window.matchMedia('(prefers-color-scheme: dark)').matches;
 				// Set the class for tailwind
-				console.log('THIS IS ' + theme);
 				const body = document.getElementsByTagName('html')[0];
 				if (theme) {
 					body.classList.remove('dark');

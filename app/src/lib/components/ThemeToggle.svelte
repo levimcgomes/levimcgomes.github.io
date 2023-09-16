@@ -55,7 +55,6 @@
 	onMount(() => {
 		theme = getTheme();
 		setTheme(theme);
-		console.log('MOUNT: ' + theme);
 	});
 
 	// Create the springs
@@ -76,7 +75,6 @@
 	$: setTheme(theme);
 	$: {
 		themeStore.set(theme);
-		console.log('SET STORE');
 	}
 </script>
 
