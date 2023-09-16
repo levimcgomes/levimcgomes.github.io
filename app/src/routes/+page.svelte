@@ -12,6 +12,7 @@
 <h1 class="no-underline text-center text-5xl my-6">How I Made A Game</h1>
 <h2>Recent Posts</h2>
 <PostList postList={data.posts} />
+<div class="text-center my-2"><a href="/archive" class="btn text-2xl py-2 px-4">See All</a></div>
 <h2 id="about">About</h2>
 <p>
 	So, what's this all <em>about</em>? It's about how I made a game. Sometimes. Really, it's about
