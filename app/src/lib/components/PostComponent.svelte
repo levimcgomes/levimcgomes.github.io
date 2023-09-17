@@ -25,8 +25,8 @@
 	{/if}
 	<ul class="flex flex-wrap items-center ml-4 list-none">
 		{#each post.tags as tag}
-			<li class="tag">
-				{tag}
+			<li>
+				<a href={'/tag/' + tag} class="tag">{tag}</a>
 			</li>
 		{/each}
 	</ul>

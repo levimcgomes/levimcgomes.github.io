@@ -40,8 +40,8 @@
 </p>
 <ul class="flex flex-wrap items-center mb-8 list-none">
 	{#each data.post.tags as tag}
-		<li class="tag">
-			{tag}
+		<li>
+			<a href={'/tag/' + tag} class="tag">{tag}</a>
 		</li>
 	{/each}
 </ul>
