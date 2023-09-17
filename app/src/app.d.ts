@@ -3,7 +3,6 @@
 declare global {
 	namespace App {
 		interface Error {
-			path: string;
 			pwd: string;
 		}
 		// interface Locals {}

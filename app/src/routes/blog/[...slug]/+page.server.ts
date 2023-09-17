@@ -31,8 +31,7 @@ export const load = (({ params }) => {
 			throw redirect(301, '/blog/' + params.slug.replaceAll('_', '/'));
 		}
 		throw error(404, {
-			message: 'Post not found!',
-			path: path,
+			message: 'Post not found: ' + params.slug,
 			pwd: process.cwd()
 		});
 	}
