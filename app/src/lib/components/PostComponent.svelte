@@ -25,9 +25,7 @@
 	{/if}
 	<ul class="flex flex-wrap items-center ml-4 list-none">
 		{#each post.tags as tag}
-			<li
-				class="border-y-2 border-accent-500 px-2 py-0 mt-0 mb-1 ml-2 mr-0 leading-tight bg-accent-900 dark:bg-accent-300"
-			>
+			<li class="tag">
 				{tag}
 			</li>
 		{/each}
