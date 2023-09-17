@@ -53,6 +53,36 @@
 	{@html data.innerHTML}
 </div>
 
+<d class="flex mt-8">
+	{#if data.previousPostPath !== '/blog/undefined'}
+		<a
+			class="group btn inline-block px-5 py-0 text-center w-1/2 rounded-r-none"
+			href={data.previousPostPath}
+		>
+			<span
+				class="relative transition-all before:content-['«'] before:absolute before:opacity-0 before:-left-5 before:transition-all group-hover:before:opacity-100 group-hover:before:left-0 group-hover:pl-6"
+				>Previous Post</span
+			>
+		</a>
+	{:else}
+		<!--just so the next one stays on the right,
+		there are probably better solutions to this, but it's
+		only going to happen on one post so...-->
+		<div class="w-1/2" />
+	{/if}
+	{#if data.nextPostPath !== '/blog/metroidvania/devlog0'}
+		<a
+			class="group btn inline-block px-5 py-0 text-center w-1/2 rounded-l-none"
+			href={data.nextPostPath}
+		>
+			<span
+				class="relative transition-all after:content-['»'] after:absolute after:opacity-0 after:-right-5 after:transition-all group-hover:after:opacity-100 group-hover:after:right-0 group-hover:pr-6"
+				>Next Post</span
+			>
+		</a>
+	{/if}
+</d>
+
 <Giscus
 	repo="levimcgomes/levimcgomes.github.io"
 	repoId="R_kgDOH_rqaA"

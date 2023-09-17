@@ -1,4 +1,4 @@
-import { postFromPath } from '$lib/server/post';
+import { getPostList } from '$lib/server/post';
 import type { Post } from '$lib/server/post.type';
 import { error, redirect } from '@sveltejs/kit';
 import fs from 'fs';
@@ -10,15 +10,24 @@ export const load = (({ params }) => {
 	const path = './src/posts/' + params.slug + '.md';
 	let post: Post;
 	let html: string;
+	let previousPostPath: string | undefined;
+	let nextPostPath: string | undefined;
 	try {
-		post = postFromPath(path, true);
+		const postList = getPostList();
+		const i = postList.findIndex((post) => post.path === path);
+		// Use indexing because we want an invalid index to throw
+		post = postList[i];
 		html = markdown(post.content);
+		// Use at because an invalid index is fine
+		// (this might be the first or last post)
+		previousPostPath = postList.at(i + 1)?.path;
+		nextPostPath = postList.at(i - 1)?.path;
 	} catch (e) {
 		// For backwards compatibility
 		// The previous blog separated paths in the blog route
 		// by _ (cause next doesn't support variadic dynamic routes, w Svelte)
 		// so we do a simple redirect to ensure legacy links still work
-		if (fs.existsSync(path.replaceAll('_', '/'))) {
+		if (path.includes('_') && fs.existsSync(path.replaceAll('_', '/'))) {
 			throw redirect(301, '/blog/' + params.slug.replaceAll('_', '/'));
 		}
 		throw error(404, {
@@ -30,6 +39,8 @@ export const load = (({ params }) => {
 
 	return {
 		post: post,
-		innerHTML: html
+		innerHTML: html,
+		previousPostPath: '/blog/' + previousPostPath?.slice(12).slice(0, -3),
+		nextPostPath: '/blog/' + nextPostPath?.slice(12).slice(0, -3)
 	};
 }) satisfies PageServerLoad;
