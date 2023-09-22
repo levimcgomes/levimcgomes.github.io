@@ -8,9 +8,9 @@
 	class="w-auto rounded-lg shadow-[0_4px_8px_0_rgb(0_0_0_/_20%),_0_6px_20px_0_rgb(0_0_0_/_19%)] relative overflow-hidden min-h-[35vh]"
 >
 	{#if post.cover_image_exists}
-		<img src={post.cover_image} alt="" class="pt-5 w-10/12 mx-auto" />
+		<img src={'/' + post.cover_image} alt="" class="pt-5 w-10/12 mx-auto" />
 		<p
-			class="text-right mr-4 before:content-['-Posted_on_'] text-sm italic text-grey-400 dark:text-grey-600"
+			class="text-right mr-4 before:content-['-_Posted_on_'] text-sm italic text-grey-400 dark:text-grey-600"
 		>
 			{post.date_string}
 		</p>
@@ -18,7 +18,7 @@
 	{:else}
 		<h2 class="text-center mt-2 mb-1">{post.title}</h2>
 		<p
-			class="text-right mr-4 before:content-['-Posted_on_'] text-sm italic text-grey-400 dark:text-grey-600"
+			class="text-right mr-4 before:content-['-_Posted_on_'] text-sm italic text-grey-400 dark:text-grey-600"
 		>
 			{post.date_string}
 		</p>
